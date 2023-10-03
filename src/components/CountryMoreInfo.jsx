@@ -1,7 +1,6 @@
-export const MoreInfo = ({ data, setListStatus, getData }) => {
+export const CountryMoreInfo = ({ data, setShowMoreInfo }) => {
 	const handleBack = () => {
-		setListStatus(true)
-		getData()
+		setShowMoreInfo(false)
 	}
 
 	console.log(data)
