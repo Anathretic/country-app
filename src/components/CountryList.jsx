@@ -1,29 +1,31 @@
 import { useState } from 'react'
-import { CountryItem } from './CountryItem'
 import { DataHandler } from '../getDataHelper'
-import { MoreInfo } from './MoreInfo'
 
-export const CountryList = ({ countries, setCountries, getData }) => {
-	const [listStatus, setListStatus] = useState(true)
+import { CountryItem } from './CountryItem'
+import { CountryMoreInfo } from './CountryMoreInfo'
+
+export const CountryList = ({ countries }) => {
+	const [showMoreInfo, setShowMoreInfo] = useState(false)
+	const [moreInfo, setMoreInfo] = useState([])
 
 	const moreInfoHandler = id => {
 		countries.find(data => {
 			if (data.cca3 === id) {
 				DataHandler(id)
 					.then(res => {
-						setCountries(res)
-						setListStatus(false)
+						setMoreInfo(res)
+						setShowMoreInfo(true)
 					})
 					.catch(err => console.log(err))
 			}
 		})
 	}
 
-	if (!listStatus) {
-		return <MoreInfo data={countries} setListStatus={setListStatus} getData={getData} />
+	if (showMoreInfo) {
+		return <CountryMoreInfo data={moreInfo} setShowMoreInfo={setShowMoreInfo} />
 	}
 
-	if (listStatus) {
+	if (!showMoreInfo) {
 		return (
 			<div>
 				{countries.map(data => (

@@ -1,5 +1,6 @@
 import { useState } from 'react'
 import { DataHandler } from './getDataHelper'
+
 import { CountryList } from './components/CountryList'
 
 function App() {
@@ -8,7 +9,6 @@ function App() {
 	const [appStatus, setAppStatus] = useState(false)
 
 	const getData = () => {
-		clearTimeout(setIsLoading)
 		setIsLoading(true)
 		DataHandler()
 			.then(res => {
@@ -29,7 +29,7 @@ function App() {
 	}
 
 	if (appStatus) {
-		return <CountryList countries={countries} getData={getData} setCountries={setCountries}/>
+		return <CountryList countries={countries} />
 	}
 
 	if (!appStatus) {
