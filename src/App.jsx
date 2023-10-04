@@ -7,6 +7,7 @@ function App() {
 	const [countries, setCountries] = useState([])
 	const [isLoading, setIsLoading] = useState(false)
 	const [appStatus, setAppStatus] = useState(false)
+	const [darkMode, setDarkMode] = useState(false)
 
 	const getData = () => {
 		setIsLoading(true)
@@ -17,28 +18,22 @@ function App() {
 				setAppStatus(true)
 			})
 			.catch(err => console.log(err))
-			.finally(() =>
-				setTimeout(() => {
-					setIsLoading(false)
-				}, 500)
-			)
+			.finally(() => setIsLoading(false))
 	}
 
-	if (isLoading) {
-		return <p>Loading..</p>
-	}
-
-	if (appStatus) {
-		return <CountryList countries={countries} />
-	}
-
-	if (!appStatus) {
-		return (
-			<div>
-				<button onClick={getData}>Start</button>
-			</div>
-		)
-	}
+	return (
+		<div className={`country-app ${darkMode && 'dark-mode'}`}>
+			{isLoading ? (
+				<p>Loading..</p>
+			) : appStatus ? (
+				<CountryList countries={countries} setDarkMode={setDarkMode} darkMode={darkMode} />
+			) : (
+				<div>
+					<button onClick={getData}>Start</button>
+				</div>
+			)}
+		</div>
+	)
 }
 
 export default App
