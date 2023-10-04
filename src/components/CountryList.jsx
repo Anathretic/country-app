@@ -4,12 +4,11 @@ import { DataHandler } from '../getDataHelper'
 import { CountryItem } from './CountryItem'
 import { CountryMoreInfo } from './CountryMoreInfo'
 
-export const CountryList = ({ countries }) => {
+export const CountryList = ({ countries, setDarkMode, darkMode }) => {
 	const [showMoreInfo, setShowMoreInfo] = useState(false)
 	const [moreInfo, setMoreInfo] = useState([])
 	const [inputValue, setInputValue] = useState('')
 	const [selectValue, setSelectValue] = useState('')
-	const [darkMode, setDarkMode] = useState(false)
 
 	const handleDarkMode = () => {
 		if (!darkMode) {
@@ -32,8 +31,6 @@ export const CountryList = ({ countries }) => {
 		})
 	}
 
-	console.log(darkMode)
-
 	if (showMoreInfo) {
 		return (
 			<CountryMoreInfo
@@ -47,7 +44,7 @@ export const CountryList = ({ countries }) => {
 
 	if (!showMoreInfo) {
 		return (
-			<div className={`country-list-container ${darkMode && 'dark-mode'}`}>
+			<div>
 				<div>
 					<button onClick={handleDarkMode}>Dark Mode</button>
 				</div>
