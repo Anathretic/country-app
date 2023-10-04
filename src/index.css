@@ -1,0 +1,14 @@
+* {
+	padding: 0;
+	margin: 0;
+	box-sizing: border-box;
+}
+
+.country-list-container {
+	color: black;
+	background-color: rgb(219, 219, 219);
+}
+.dark-mode {
+	background-color: #525252;
+	color: #fff;
+}
