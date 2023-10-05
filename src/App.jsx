@@ -1,12 +1,13 @@
-import { useState } from 'react'
+import { useEffect, useState } from 'react'
 import { DataHandler } from './getDataHelper'
 
 import { CountryList } from './components/CountryList'
+import { Header } from './components/Header'
+import { Footer } from './components/Footer'
 
 function App() {
 	const [countries, setCountries] = useState([])
 	const [isLoading, setIsLoading] = useState(false)
-	const [appStatus, setAppStatus] = useState(false)
 	const [darkMode, setDarkMode] = useState(false)
 
 	const getData = () => {
@@ -15,23 +16,24 @@ function App() {
 			.then(res => {
 				console.log(res)
 				setCountries(res)
-				setAppStatus(true)
 			})
 			.catch(err => console.log(err))
-			.finally(() => setIsLoading(false))
+			.finally(() =>
+				setTimeout(() => {
+					setIsLoading(false)
+				}, 1000)
+			)
 	}
 
+	useEffect(() => {
+		getData()
+	}, [])
+
 	return (
-		<div className={`country-app ${darkMode && 'dark-mode'}`}>
-			{isLoading ? (
-				<p>Loading..</p>
-			) : appStatus ? (
-				<CountryList countries={countries} setDarkMode={setDarkMode} darkMode={darkMode} />
-			) : (
-				<div>
-					<button onClick={getData}>Start</button>
-				</div>
-			)}
+		<div data-mode={darkMode ? 'dark' : 'light'} className='app'>
+			<Header setDarkMode={setDarkMode} darkMode={darkMode} />
+			<div>{isLoading ? <p>Loading..</p> : <CountryList countries={countries} />}</div>
+			<Footer />
 		</div>
 	)
 }

@@ -1,22 +1,15 @@
 import { useState } from 'react'
 import { DataHandler } from '../getDataHelper'
+import { FaSearch } from 'react-icons/fa'
 
 import { CountryItem } from './CountryItem'
 import { CountryMoreInfo } from './CountryMoreInfo'
 
-export const CountryList = ({ countries, setDarkMode, darkMode }) => {
+export const CountryList = ({ countries }) => {
 	const [showMoreInfo, setShowMoreInfo] = useState(false)
 	const [moreInfo, setMoreInfo] = useState([])
 	const [inputValue, setInputValue] = useState('')
 	const [selectValue, setSelectValue] = useState('')
-
-	const handleDarkMode = () => {
-		if (!darkMode) {
-			setDarkMode(true)
-		} else {
-			setDarkMode(false)
-		}
-	}
 
 	const moreInfoHandler = id => {
 		countries.find(data => {
@@ -44,12 +37,12 @@ export const CountryList = ({ countries, setDarkMode, darkMode }) => {
 
 	if (!showMoreInfo) {
 		return (
-			<div>
-				<div>
-					<button onClick={handleDarkMode}>Dark Mode</button>
-				</div>
-				<div>
+			<div className='country-list-wrapper'>
+				<div className='country-list-filters'>
 					<input type='text' placeholder='Search..' value={inputValue} onChange={e => setInputValue(e.target.value)} />
+					<span className='country-list-search-icon'>
+						<FaSearch />
+					</span>
 					<select value={selectValue} onChange={e => setSelectValue(e.target.value)}>
 						<option value=''>All countries</option>
 						<option value='africa'>Africa</option>
@@ -60,6 +53,9 @@ export const CountryList = ({ countries, setDarkMode, darkMode }) => {
 						<option value='oceania'>Oceania</option>
 						<option value='south america'>South America</option>
 					</select>
+				</div>
+				<div className='country-list-instructions'>
+					<p>To show more info, click the flag!</p>
 				</div>
 				<div>
 					{countries
