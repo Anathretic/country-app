@@ -57,7 +57,7 @@ export const CountryList = ({ countries }) => {
 				<div className='country-list-instructions'>
 					<p>To show more info, click the flag!</p>
 				</div>
-				<div>
+				<div className='country-list-container'>
 					{countries
 						.filter(country => {
 							if (!inputValue && !selectValue) {
