@@ -1,8 +1,8 @@
-export const CountryItem = ({ data, moreInfoHandler }) => {
+export const CountryItem = ({ data, moreInfoDataHandler }) => {
 	return (
 		<div className='country-list-item'>
 			<div className='country-list-box'>
-				<button className='country-list-box-img' onClick={() => moreInfoHandler(data.cca3)}>
+				<button type='button' className='country-list-box-img' onClick={() => moreInfoDataHandler(data.cca3)}>
 					<img src={data.flags.png} alt={`Flag of ${data.name.common}`} />
 				</button>
 				<p className='country-list-box-name'>
@@ -19,5 +19,5 @@ export const CountryItem = ({ data, moreInfoHandler }) => {
 				</p>
 			</div>
 		</div>
-	)
-}
+	);
+};
