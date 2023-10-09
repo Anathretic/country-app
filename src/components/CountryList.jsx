@@ -1,38 +1,45 @@
-import { useState } from 'react'
-import { DataHandler } from '../getDataHelper'
-import { FaSearch } from 'react-icons/fa'
+import { useEffect, useState } from 'react';
+import { CountryItem } from './CountryItem';
+import { CountryMoreInfo } from './CountryMoreInfo';
 
-import { CountryItem } from './CountryItem'
-import { CountryMoreInfo } from './CountryMoreInfo'
+import { FaSearch } from 'react-icons/fa';
+
+import { DataHandler } from '../helpers/getDataHelper';
+import { scrollToTop } from '../utils/scrollToTop';
 
 export const CountryList = ({ countries }) => {
-	const [showMoreInfo, setShowMoreInfo] = useState(false)
-	const [moreInfo, setMoreInfo] = useState([])
-	const [inputValue, setInputValue] = useState('')
-	const [selectValue, setSelectValue] = useState('')
+	const [showMoreInfo, setShowMoreInfo] = useState(false);
+	const [moreInfoData, setMoreInfoData] = useState([]);
+	const [inputValue, setInputValue] = useState('');
+	const [selectValue, setSelectValue] = useState('');
 
-	const moreInfoHandler = id => {
+	const moreInfoDataHandler = id => {
 		countries.find(data => {
 			if (data.cca3 === id) {
 				DataHandler(id)
 					.then(res => {
-						setMoreInfo(res)
-						setShowMoreInfo(true)
+						setMoreInfoData(res);
+						setShowMoreInfo(true);
 					})
-					.catch(err => console.log(err))
+					.catch(err => console.log(err));
 			}
-		})
-	}
+		});
+	};
+
+	useEffect(() => {
+		scrollToTop();
+	}, [showMoreInfo]);
 
 	if (showMoreInfo) {
 		return (
 			<CountryMoreInfo
-				data={moreInfo}
+				data={moreInfoData}
 				setShowMoreInfo={setShowMoreInfo}
 				setInputValue={setInputValue}
 				setSelectValue={setSelectValue}
+				moreInfoDataHandler={moreInfoDataHandler}
 			/>
-		)
+		);
 	}
 
 	if (!showMoreInfo) {
@@ -61,19 +68,19 @@ export const CountryList = ({ countries }) => {
 					{countries
 						.filter(country => {
 							if (!inputValue && !selectValue) {
-								return country
+								return country;
 							} else if (
 								country.name.common.toLowerCase().includes(inputValue.toLowerCase()) &&
 								(!selectValue || country.continents.toString().toLowerCase().includes(selectValue))
 							) {
-								return country
+								return country;
 							}
 						})
 						.map(data => (
-							<CountryItem key={data.cca3} data={data} moreInfoHandler={moreInfoHandler} />
+							<CountryItem key={data.cca3} data={data} moreInfoDataHandler={moreInfoDataHandler} />
 						))}
 				</div>
 			</div>
-		)
+		);
 	}
-}
+};
