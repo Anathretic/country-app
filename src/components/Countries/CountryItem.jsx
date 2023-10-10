@@ -1,8 +1,13 @@
-export const CountryItem = ({ data, moreInfoDataHandler }) => {
+export const CountryItem = ({ data, moreInfoDataHandler, cursorLoading }) => {
 	return (
 		<div className='country-list-item'>
 			<div className='country-list-box'>
-				<button type='button' className='country-list-box-img' onClick={() => moreInfoDataHandler(data.cca3)}>
+				<button
+					type='button'
+					className={`country-list-box-img ${cursorLoading && 'cursor-loader'}`}
+					onClick={() => {
+						moreInfoDataHandler(data.cca3);
+					}}>
 					<img src={data.flags.png} alt={`Flag of ${data.name.common}`} />
 				</button>
 				<p className='country-list-box-name'>
