@@ -7,17 +7,22 @@
 }
 
 [data-mode='light'] {
-	--background-and-input-color: hsl(0, 0%, 96%);
+	--background-and-inputs-and-to-top-btn-color: hsl(0, 0%, 96%);
 	--text-and-special-color: hsl(200, 15%, 8%);
 	--box-shadow: rgba(66, 68, 90, 1);
-	--info-shadow: rgba(37, 37, 37, 0.8);
+	--go-to-top-button-bg: rgb(68, 68, 68);
 }
 
 [data-mode='dark'] {
-	--background-and-input-color: hsl(200, 15%, 8%);
+	--background-and-inputs-and-to-top-btn-color: hsl(200, 15%, 8%);
 	--text-and-special-color: hsl(0, 0%, 96%);
 	--box-shadow: rgb(165, 167, 189);
-	--info-shadow: rgba(192, 192, 192, 0.8);
+	--go-to-top-button-bg: rgb(192, 192, 192);
+}
+
+html {
+	scroll-behavior: smooth;
+	overflow-y: scroll;
 }
 
 body {
@@ -30,7 +35,40 @@ body {
 	height: 100%;
 	min-height: 100vh;
 	color: var(--text-and-special-color);
-	background-color: var(--background-and-input-color);
+	background-color: var(--background-and-inputs-and-to-top-btn-color);
+}
+
+.app-loader-wrapper {
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	padding: 3em;
+	min-height: 100vh;
+}
+
+.go-to-top-btn {
+	position: fixed;
+	left: 50%;
+	transform: translate(-50%);
+	display: flex;
+	bottom: 0.5em;
+	padding: 1em;
+	background-color: var(--go-to-top-button-bg);
+	color: var(--background-and-inputs-and-to-top-btn-color);
+	border-radius: 50%;
+	border: none;
+	font-size: 28px;
+	text-decoration: none;
+	transition: visibility 1s, opacity 1s;
+	cursor: pointer;
+	z-index: 10;
+	opacity: 0;
+	visibility: hidden;
+}
+
+.active-btn {
+	visibility: visible;
+	opacity: 1;
 }
 
 .header {
@@ -63,12 +101,12 @@ body {
 	display: flex;
 	justify-content: center;
 	align-items: center;
-	padding: 0.75rem;
+	padding: 0.6rem;
 	width: 50px;
 	height: 55px;
-	background-color: var(--background-and-input-color);
+	background-color: var(--background-and-inputs-and-to-top-btn-color);
 	color: var(--text-and-special-color);
-	border: 2px solid var(--text-and-special-color);
+	border: 1px solid var(--text-and-special-color);
 	border-radius: 8px;
 	transition: box-shadow 0.3s;
 	cursor: pointer;
@@ -97,7 +135,7 @@ body {
 .country-list-filters input {
 	padding: 1rem 2rem;
 	margin: 0.75rem 0;
-	background-color: var(--background-and-input-color);
+	background-color: var(--background-and-inputs-and-to-top-btn-color);
 	color: var(--text-and-special-color);
 	font-family: 'Ysabeau Infant', sans-serif;
 	border: none;
@@ -140,6 +178,7 @@ body {
 	grid-template-columns: repeat(1, 1fr);
 	gap: 3em;
 	padding: 0 2em 3.4em;
+	min-height: 10vh;
 	list-style: none;
 }
 
@@ -164,6 +203,10 @@ body {
 	border: none;
 	transition: transform 0.3s;
 	cursor: pointer;
+}
+
+.cursor-loader {
+	cursor: wait;
 }
 
 .country-list-box-img:hover {
@@ -295,6 +338,44 @@ body {
 	transform: rotate(360deg);
 }
 
+.page-not-found {
+	width: 100%;
+}
+
+.page-not-found-container {
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	flex-direction: column;
+	padding: 2em;
+}
+
+.page-not-found img {
+	width: 100%;
+	max-width: 800px;
+}
+
+.page-not-found-credits {
+	font-size: 0.7em;
+}
+
+.page-not-found-credits a {
+	color: var(--text-and-special-color);
+	text-decoration: underline;
+}
+
+.page-not-found-btn {
+	padding: 0.8em 3em;
+	margin: 2em 1em 1em;
+	background-color: rgb(109, 109, 109);
+	color: white;
+	font-size: 1em;
+	text-transform: uppercase;
+	text-decoration: none;
+	border-radius: 8px;
+	transition: background-color 0.3s, color 0.3s;
+}
+
 @media (max-width: 300px) {
 	.country-list-search-icon {
 		top: 60px;
@@ -397,9 +478,17 @@ body {
 	.footer-icons .footer-icon {
 		font-size: 36px;
 	}
+
+	.page-not-found-btn {
+		padding: 0.8em 4em;
+	}
 }
 
 @media (min-width: 1024px) and (min-height: 768px) {
+	.go-to-top-btn {
+		font-size: 34px;
+	}
+
 	.country-list-box-img img {
 		width: 230px;
 		height: 120px;
@@ -454,6 +543,19 @@ body {
 		margin: 1em;
 		font-size: 40px;
 	}
+
+	.page-not-found-credits {
+		font-size: 0.9em;
+	}
+
+	.page-not-found-btn {
+		padding: 0.8em 5em;
+		font-size: 1.2em;
+	}
+
+	.page-not-found-btn:hover {
+		background-color: rgb(155, 155, 155);
+	}
 }
 
 @media (min-width: 1280px) and (min-height: 768px) {
@@ -467,6 +569,7 @@ body {
 
 	.country-list-container {
 		grid-template-columns: repeat(4, 1fr);
+		min-height: 48vh;
 	}
 
 	.country-more-info-button {

@@ -1,9 +1,12 @@
 import { useEffect, useState } from 'react';
+import { Route, Routes } from 'react-router-dom';
 import { DataHandler } from './helpers/getDataHelper';
 
-import { CountryList } from './components/CountryList';
+import { CountryList } from './components/Countries/CountryList';
 import { Header } from './components/Header';
 import { Footer } from './components/Footer';
+import { BarsLoader } from './components/Loader';
+import { PageNotFound } from './components/PageNotFound';
 
 function App() {
 	const [countries, setCountries] = useState([]);
@@ -14,7 +17,6 @@ function App() {
 		setIsLoading(true);
 		DataHandler()
 			.then(res => {
-				console.log(res);
 				setCountries(res);
 			})
 			.catch(err => console.log(err))
@@ -33,7 +35,24 @@ function App() {
 		<>
 			<div data-mode={darkMode ? 'dark' : 'light'} className='app'>
 				<Header setDarkMode={setDarkMode} darkMode={darkMode} />
-				<div>{isLoading ? <p>Loading..</p> : <CountryList countries={countries} />}</div>
+				<Routes>
+					<Route
+						path='/'
+						element={
+							<div>
+								{isLoading ? <BarsLoader /> : <CountryList countries={countries} setIsLoading={setIsLoading} />}
+							</div>
+						}
+					/>
+					<Route
+						path='*'
+						element={
+							<>
+								<PageNotFound />
+							</>
+						}
+					/>
+				</Routes>
 				<Footer />
 			</div>
 		</>

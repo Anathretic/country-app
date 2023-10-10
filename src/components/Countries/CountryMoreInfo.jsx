@@ -1,5 +1,5 @@
-import { handlePluralTitle } from '../utils/handlePluralTitle';
-import { scrollToTop } from '../utils/scrollToTop';
+import { handlePluralTitle } from '../../utils/handlePluralTitle';
+import { scrollToTop } from '../../utils/scrollToTop';
 
 export const CountryMoreInfo = ({ data, setShowMoreInfo, setInputValue, setSelectValue, moreInfoDataHandler }) => {
 	const [country] = data;
