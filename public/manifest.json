@@ -1,0 +1,26 @@
+{
+	"name": "Countrypedia",
+	"description": "Do you want to check information about your country? You have come to the right place!",
+	"start_url": "./",
+	"scope": "/",
+	"display": "standalone",
+	"theme_color": "#111111",
+	"background_color": "#222222",
+	"icons": [
+		{
+			"src": "manifest-icons/icon-48.png",
+			"sizes": "48x48",
+			"type": "image/png"
+		},
+		{
+			"src": "manifest-icons/icon-96.png",
+			"sizes": "96x96",
+			"type": "image/png"
+		},
+		{
+			"src": "manifest-icons/icon-144.png",
+			"sizes": "144x144",
+			"type": "image/png"
+		}
+	]
+}
