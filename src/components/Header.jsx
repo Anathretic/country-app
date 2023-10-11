@@ -1,4 +1,5 @@
 import { IconContext } from 'react-icons';
+import { BsGlobe } from 'react-icons/bs';
 import { GiWorld, GiMoonBats, GiSun } from 'react-icons/gi';
 
 export const Header = ({ setDarkMode, darkMode }) => {
@@ -15,7 +16,7 @@ export const Header = ({ setDarkMode, darkMode }) => {
 			<div className='header-content'>
 				<h1 className='header-title'>
 					<IconContext.Provider value={{ className: 'header-title-icon' }}>
-						<GiWorld fontSize='32px' />
+						<BsGlobe fontSize='32px' />
 					</IconContext.Provider>
 					Countrypedia
 				</h1>

@@ -1,8 +1,19 @@
-# React + Vite
+# Countrypedia
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+## About
 
-Currently, two official plugins are available:
+My second version of the app, which allows you to search for information about a country (200+ countries) and its data, such as population or currency.
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react/README.md) uses [Babel](https://babeljs.io/) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+It has two search options whose logic has been improved and the list of countries is displayed alphabetically.
+
+A dark mode is also included.
+
+## Links & Tools
+
+**API:** [Rest-Countries](https://restcountries.com/)
+
+**Inspiration:** [Frontend-Mentor](https://www.frontendmentor.io/challenges/rest-countries-api-with-color-theme-switcher-5cacc469fec04111f7b848ca)
+
+**Used:** JavaScript, React, CSS.
+
+**URL:** [Countrypedia](https://countrypedia.online/)

@@ -56,6 +56,7 @@ export const CountryList = ({ countries }) => {
 					<div className='country-list-filters'>
 						<input
 							type='text'
+							name='searchCountry'
 							placeholder='Search..'
 							value={inputValue}
 							onChange={e => setInputValue(e.target.value)}
@@ -63,7 +64,7 @@ export const CountryList = ({ countries }) => {
 						<span className='country-list-search-icon'>
 							<FaSearch />
 						</span>
-						<select value={selectValue} onChange={e => setSelectValue(e.target.value)}>
+						<select name='continentSelect' value={selectValue} onChange={e => setSelectValue(e.target.value)}>
 							<option value=''>All countries</option>
 							<option value='africa'>Africa</option>
 							<option value='antarctica'>Antarctica</option>
