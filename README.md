@@ -14,6 +14,6 @@ A dark mode is also included.
 
 **Inspiration:** [Frontend-Mentor](https://www.frontendmentor.io/challenges/rest-countries-api-with-color-theme-switcher-5cacc469fec04111f7b848ca)
 
-**Used:** JavaScript, React, CSS.
+**Used:** JavaScript, React (incl. Context), CSS.
 
 **URL:** [Countrypedia](https://countrypedia.online/)
