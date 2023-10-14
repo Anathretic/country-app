@@ -1,4 +1,4 @@
-import { useEffect, useState } from 'react';
+import { useContext, useEffect, useState } from 'react';
 import { Route, Routes } from 'react-router-dom';
 import { DataHandler } from './helpers/getDataHelper';
 
@@ -8,10 +8,13 @@ import { Footer } from './components/Footer';
 import { BarsLoader } from './components/Loader';
 import { PageNotFound } from './components/PageNotFound';
 
+import { DarkModeContext } from './context/DarkModeContext';
+
 function App() {
 	const [countries, setCountries] = useState([]);
 	const [isLoading, setIsLoading] = useState(false);
-	const [darkMode, setDarkMode] = useState(false);
+
+	const { darkMode } = useContext(DarkModeContext);
 
 	const getData = () => {
 		setIsLoading(true);
@@ -33,17 +36,10 @@ function App() {
 
 	return (
 		<>
-			<div data-mode={darkMode ? 'dark' : 'light'} className='app'>
-				<Header setDarkMode={setDarkMode} darkMode={darkMode} />
+			<div className={`app ${darkMode ? 'dark-mode' : 'light-mode'}`}>
+				<Header />
 				<Routes>
-					<Route
-						path='/'
-						element={
-							<div>
-								{isLoading ? <BarsLoader /> : <CountryList countries={countries} setIsLoading={setIsLoading} />}
-							</div>
-						}
-					/>
+					<Route path='/' element={<div>{isLoading ? <BarsLoader /> : <CountryList countries={countries} />}</div>} />
 					<Route
 						path='*'
 						element={
