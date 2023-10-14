@@ -6,14 +6,14 @@
 	padding: 0;
 }
 
-[data-mode='light'] {
+.light-mode {
 	--background-and-inputs-and-to-top-btn-color: hsl(0, 0%, 96%);
 	--text-and-special-color: hsl(200, 15%, 8%);
 	--box-shadow: rgba(66, 68, 90, 1);
 	--go-to-top-button-bg: rgb(68, 68, 68);
 }
 
-[data-mode='dark'] {
+.dark-mode {
 	--background-and-inputs-and-to-top-btn-color: hsl(200, 15%, 8%);
 	--text-and-special-color: hsl(0, 0%, 96%);
 	--box-shadow: rgb(165, 167, 189);

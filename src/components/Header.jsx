@@ -1,14 +1,15 @@
+import { useContext } from 'react';
+import { DarkModeContext } from '../context/DarkModeContext';
+
 import { IconContext } from 'react-icons';
 import { BsGlobe } from 'react-icons/bs';
-import { GiWorld, GiMoonBats, GiSun } from 'react-icons/gi';
+import { GiMoonBats, GiSun } from 'react-icons/gi';
 
-export const Header = ({ setDarkMode, darkMode }) => {
+export const Header = () => {
+	const { darkMode, toggleDarkMode } = useContext(DarkModeContext);
+
 	const handleDarkMode = () => {
-		if (!darkMode) {
-			setDarkMode(true);
-		} else {
-			setDarkMode(false);
-		}
+		toggleDarkMode();
 	};
 
 	return (
