@@ -22,12 +22,8 @@ function App() {
 			.then(res => {
 				setCountries(res);
 			})
-			.catch(err => console.log(err))
-			.finally(() =>
-				setTimeout(() => {
-					setIsLoading(false);
-				}, 1000)
-			);
+			.catch(err => console.log(err.message))
+			.finally(() => setIsLoading(false));
 	};
 
 	useEffect(() => {
@@ -35,23 +31,14 @@ function App() {
 	}, []);
 
 	return (
-		<>
-			<div className={`app ${darkMode ? 'dark-mode' : 'light-mode'}`}>
-				<Header />
-				<Routes>
-					<Route path='/' element={<div>{isLoading ? <BarsLoader /> : <CountryList countries={countries} />}</div>} />
-					<Route
-						path='*'
-						element={
-							<>
-								<PageNotFound />
-							</>
-						}
-					/>
-				</Routes>
-				<Footer />
-			</div>
-		</>
+		<div className={`app ${darkMode ? 'dark-mode' : 'light-mode'}`}>
+			<Header />
+			<Routes>
+				<Route path='/' element={<div>{isLoading ? <BarsLoader /> : <CountryList countries={countries} />}</div>} />
+				<Route path='*' element={<PageNotFound />} />
+			</Routes>
+			<Footer />
+		</div>
 	);
 }
 

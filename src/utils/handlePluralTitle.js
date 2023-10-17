@@ -1,11 +1,11 @@
-export const handlePluralTitle = (data, firstOption, secondOoption) => {
-	if (data) {
-		if (data.length === 1) {
-			return firstOption;
+export const handlePluralTitle = (valueArr, singleTitle, pluralTitle) => {
+	if (valueArr) {
+		if (valueArr.length === 1) {
+			return singleTitle;
 		} else {
-			return secondOoption;
+			return pluralTitle;
 		}
 	} else {
-		return secondOoption;
+		return pluralTitle;
 	}
 };
