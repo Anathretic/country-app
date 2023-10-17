@@ -8,10 +8,6 @@ import { GiMoonBats, GiSun } from 'react-icons/gi';
 export const Header = () => {
 	const { darkMode, toggleDarkMode } = useContext(DarkModeContext);
 
-	const handleDarkMode = () => {
-		toggleDarkMode();
-	};
-
 	return (
 		<header className='header'>
 			<div className='header-content'>
@@ -21,7 +17,7 @@ export const Header = () => {
 					</IconContext.Provider>
 					Countrypedia
 				</h1>
-				<button type='button' onClick={handleDarkMode} className='dark-mode-btn'>
+				<button type='button' onClick={toggleDarkMode} className='dark-mode-btn'>
 					<IconContext.Provider value={{ className: 'dark-mode-btn-icon' }}>
 						{darkMode ? <GiSun fontSize='28px' /> : <GiMoonBats fontSize='28px' />}
 					</IconContext.Provider>

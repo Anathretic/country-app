@@ -1,12 +1,14 @@
 import { handlePluralTitle } from '../../utils/handlePluralTitle';
 import { scrollToTop } from '../../utils/scrollToTop';
+import { CountryMoreInfoBox } from './CountryMoreInfoBox';
 
-export const CountryMoreInfo = ({ data, setShowMoreInfo, setInputValue, setSelectValue, moreInfoDataHandler }) => {
+export const CountryMoreInfo = ({ data, setShowMoreInfo, setInputs, moreInfoDataHandler }) => {
 	const [country] = data;
 
 	const countryName = country.name.official;
 	const countryNativeName = country.name.nativeName ? Object.values(country.name.nativeName)[0].official : 'N/A';
 	const countryCapital = country.capital ? country.capital && country.capital[0] : 'N/A';
+	const countryRegion = country.region;
 	const countrySubRegion = country.subregion ? country.subregion : 'N/A';
 	const countryPopulation = country.population.toLocaleString();
 	const countryCurrencies = country.currencies
@@ -35,68 +37,39 @@ export const CountryMoreInfo = ({ data, setShowMoreInfo, setInputValue, setSelec
 		: 'N/A';
 
 	const countryCurrenciesTitle = country.currencies
-		? handlePluralTitle(Object.values(country.currencies), 'Currency:', 'Currencies:')
-		: 'Currency:';
+		? handlePluralTitle(Object.values(country.currencies), 'Currency', 'Currencies')
+		: 'Currency';
 	const countryLanguagesTitle = country.languages
-		? handlePluralTitle(Object.values(country.languages), 'Language:', 'Languages:')
-		: 'Languages:';
+		? handlePluralTitle(Object.values(country.languages), 'Language', 'Languages')
+		: 'Languages';
 	const countryTopLevelDomainTitle = country.tld
-		? handlePluralTitle(country.tld, 'Top level domain:', 'Top level domains:')
-		: 'Top level domain:';
+		? handlePluralTitle(country.tld, 'Top level domain', 'Top level domains')
+		: 'Top level domain';
 	const countryBordersTitle = country.borders
-		? handlePluralTitle(country.borders, 'Border country:', 'Border countries:')
-		: 'Border countries:';
+		? handlePluralTitle(country.borders, 'Border country', 'Border countries')
+		: 'Border countries';
 
 	const handleBack = () => {
 		setShowMoreInfo(false);
-		setInputValue('');
-		setSelectValue('');
+		setInputs({ searchCountry: '', continentSelect: '' });
 	};
 
 	return (
 		<div className='country-more-info-wrapper'>
 			<img className='country-more-info-flag' src={country.flags.png} alt={country.flags.alt} />
 			<p className='country-more-info-title'>{countryName}</p>
-			<div className='country-more-info-container'>
-				<p>Native name:</p>
-				<span>{countryNativeName}</span>
-			</div>
-			<div className='country-more-info-container'>
-				<p>Capital:</p>
-				<span>{countryCapital}</span>
-			</div>
-			<div className='country-more-info-container'>
-				<p>Region:</p>
-				<span>{country.region}</span>
-			</div>
-			<div className='country-more-info-container'>
-				<p>Sub region:</p>
-				<span>{countrySubRegion}</span>
-			</div>
-			<div className='country-more-info-container'>
-				<p>Population:</p>
-				<span>{countryPopulation}</span>
-			</div>
-			<div className='country-more-info-container'>
-				<p>{countryCurrenciesTitle}</p>
-				<span>{countryCurrencies}</span>
-			</div>
-			<div className='country-more-info-container'>
-				<p>{countryLanguagesTitle}</p>
-				<span>{countryLanguages}</span>
-			</div>
-			<div className='country-more-info-container'>
-				<p>{countryTopLevelDomainTitle}</p>
-				<span>{countryTopLevelDomain}</span>
-			</div>
-			<div className='country-more-info-container'>
-				<p>Start of the week:</p>
-				<span>{countryStartOfWeek}</span>
-			</div>
-			<div className='country-more-info-container'>
-				<p>{countryBordersTitle}</p>
+			<CountryMoreInfoBox label='Native name' dataSpan={countryNativeName} />
+			<CountryMoreInfoBox label='Capital' dataSpan={countryCapital} />
+			<CountryMoreInfoBox label='Region' dataSpan={countryRegion} />
+			<CountryMoreInfoBox label='Sub region' dataSpan={countrySubRegion} />
+			<CountryMoreInfoBox label='Population' dataSpan={countryPopulation} />
+			<CountryMoreInfoBox label={countryCurrenciesTitle} dataSpan={countryCurrencies} />
+			<CountryMoreInfoBox label={countryLanguagesTitle} dataSpan={countryLanguages} />
+			<CountryMoreInfoBox label={countryTopLevelDomainTitle} dataSpan={countryTopLevelDomain} />
+			<CountryMoreInfoBox label='Start of the week' dataSpan={countryStartOfWeek} />
+			<CountryMoreInfoBox label={countryBordersTitle}>
 				<div className='country-more-info-button-box'>{countryBorders}</div>
-			</div>
+			</CountryMoreInfoBox>
 			<button type='button' className='country-more-info-button' onClick={handleBack}>
 				home
 			</button>

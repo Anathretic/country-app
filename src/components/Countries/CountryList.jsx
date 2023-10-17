@@ -1,20 +1,21 @@
 import { useEffect, useState } from 'react';
 import { CountryItem } from './CountryItem';
 import { CountryMoreInfo } from './CountryMoreInfo';
+import { CountryListInputFilter, CountryListSelectFilter } from './CountryListFilters';
 import { GoToTopBtn } from '../GoToTopBtn';
 
-import { FaSearch } from 'react-icons/fa';
-
+import { useFilterInputs } from '../../hooks/useFilterInputs';
 import { DataHandler } from '../../helpers/getDataHelper';
+import { filterCountryList } from '../../helpers/filterCountryList';
+import { sortCountryList } from '../../helpers/sortCountryList';
 import { scrollToTop } from '../../utils/scrollToTop';
-import { sortCountryList } from '../../utils/sortCountryList';
 
 export const CountryList = ({ countries }) => {
 	const [showMoreInfo, setShowMoreInfo] = useState(false);
 	const [moreInfoData, setMoreInfoData] = useState([]);
-	const [inputValue, setInputValue] = useState('');
-	const [selectValue, setSelectValue] = useState('');
 	const [cursorLoading, setCursorLoading] = useState(false);
+
+	const [inputs, setInputs, handleInputChange] = useFilterInputs();
 
 	const moreInfoDataHandler = id => {
 		countries.find(data => {
@@ -35,74 +36,44 @@ export const CountryList = ({ countries }) => {
 		scrollToTop();
 	}, [showMoreInfo]);
 
-	if (showMoreInfo) {
-		return (
-			<CountryMoreInfo
-				data={moreInfoData}
-				setShowMoreInfo={setShowMoreInfo}
-				setInputValue={setInputValue}
-				setSelectValue={setSelectValue}
-				moreInfoDataHandler={moreInfoDataHandler}
-				setCursorLoading={setCursorLoading}
-			/>
-		);
-	}
-
-	if (!showMoreInfo) {
-		return (
-			<>
-				<GoToTopBtn />
-				<div className='country-list-wrapper'>
-					<div className='country-list-filters'>
-						<input
-							type='text'
-							name='searchCountry'
-							placeholder='Search..'
-							value={inputValue}
-							onChange={e => setInputValue(e.target.value)}
-						/>
-						<span className='country-list-search-icon'>
-							<FaSearch />
-						</span>
-						<select name='continentSelect' value={selectValue} onChange={e => setSelectValue(e.target.value)}>
-							<option value=''>All countries</option>
-							<option value='africa'>Africa</option>
-							<option value='antarctica'>Antarctica</option>
-							<option value='asia'>Asia</option>
-							<option value='europe'>Europe</option>
-							<option value='north america'>North America</option>
-							<option value='oceania'>Oceania</option>
-							<option value='south america'>South America</option>
-						</select>
+	return (
+		<>
+			{showMoreInfo ? (
+				<CountryMoreInfo
+					data={moreInfoData}
+					setShowMoreInfo={setShowMoreInfo}
+					setInputs={setInputs}
+					moreInfoDataHandler={moreInfoDataHandler}
+					setCursorLoading={setCursorLoading}
+				/>
+			) : (
+				<>
+					<GoToTopBtn />
+					<div className='country-list-wrapper'>
+						<div className='country-list-filters'>
+							<CountryListInputFilter value={inputs.searchCountry} onChange={handleInputChange} />
+							<CountryListSelectFilter value={inputs.continentSelect} onChange={handleInputChange} />
+						</div>
+						<div className='country-list-instructions'>
+							<p>To show more info, click the flag!</p>
+						</div>
+						<div className='country-list-container'>
+							{countries
+								.filter(country => filterCountryList(country, inputs.searchCountry, inputs.continentSelect))
+								.map(data => (
+									<CountryItem
+										key={data.cca3}
+										data={data}
+										moreInfoDataHandler={moreInfoDataHandler}
+										setCursorLoading={setCursorLoading}
+										cursorLoading={cursorLoading}
+									/>
+								))
+								.sort((firstCountry, secondCountry) => sortCountryList(firstCountry, secondCountry))}
+						</div>
 					</div>
-					<div className='country-list-instructions'>
-						<p>To show more info, click the flag!</p>
-					</div>
-					<div className='country-list-container'>
-						{countries
-							.filter(country => {
-								if (!inputValue && !selectValue) {
-									return country;
-								} else if (
-									country.name.common.toLowerCase().includes(inputValue.toLowerCase()) &&
-									(!selectValue || country.continents.toString().toLowerCase().includes(selectValue))
-								) {
-									return country;
-								}
-							})
-							.map(data => (
-								<CountryItem
-									key={data.cca3}
-									data={data}
-									moreInfoDataHandler={moreInfoDataHandler}
-									setCursorLoading={setCursorLoading}
-									cursorLoading={cursorLoading}
-								/>
-							))
-							.sort((firstCountry, secondCountry) => sortCountryList(firstCountry, secondCountry))}
-					</div>
-				</div>
-			</>
-		);
-	}
+				</>
+			)}
+		</>
+	);
 };
