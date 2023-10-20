@@ -7,11 +7,15 @@ My second version of the app, which allows you to search for information about a
 ## Coding & Problems
 
 I decided to move the whole project to React, which has brought many benefits:
+
 - Created function based on promise to get the data (less code to write),
 - (MoreInfo) User can directly switch between countries using the border countries buttons,
 - Improved inputs and sort countries alphabetically,
 - Created dark mode based on Context,
 - Changed loader,
+- Cleared CSS
+
+The code is refactored and divided into components and custom hooks.
 
 ## Links & Tools
 
