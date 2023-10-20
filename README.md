@@ -4,9 +4,14 @@
 
 My second version of the app, which allows you to search for information about a country (200+ countries) and its data, such as population or currency.
 
-It has two search options whose logic has been improved and the list of countries is displayed alphabetically.
+## Coding & Problems
 
-A dark mode is also included.
+I decided to move the whole project to React, which has brought many benefits:
+- Created function based on promise to get the data (less code to write),
+- (MoreInfo) User can directly switch between countries using the border countries buttons,
+- Improved inputs and sort countries alphabetically,
+- Created dark mode based on Context,
+- Changed loader,
 
 ## Links & Tools
 
