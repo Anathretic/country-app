@@ -4,12 +4,15 @@ import App from './App.jsx';
 import './index.css';
 import { BrowserRouter } from 'react-router-dom';
 import { DarkModeProvider } from './context/DarkModeContext.jsx';
+import { CountryListLoadingProvider } from './context/CountryListLoadingContext.jsx';
 
 ReactDOM.createRoot(document.getElementById('root')).render(
 	<React.StrictMode>
 		<BrowserRouter>
 			<DarkModeProvider>
-				<App />
+				<CountryListLoadingProvider>
+					<App />
+				</CountryListLoadingProvider>
 			</DarkModeProvider>
 		</BrowserRouter>
 	</React.StrictMode>
