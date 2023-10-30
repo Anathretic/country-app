@@ -205,6 +205,10 @@ body {
 	cursor: pointer;
 }
 
+.events-blocker {
+	pointer-events: none;
+}
+
 .cursor-loader {
 	cursor: wait;
 }

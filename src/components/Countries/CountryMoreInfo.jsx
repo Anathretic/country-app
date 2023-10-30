@@ -1,8 +1,11 @@
+import { useContext } from 'react';
 import { handlePluralTitle } from '../../utils/handlePluralTitle';
 import { scrollToTop } from '../../utils/scrollToTop';
 import { CountryMoreInfoBox } from './CountryMoreInfoBox';
+import { CountryListLoadingContext } from '../../context/CountryListLoadingContext';
 
 export const CountryMoreInfo = ({ data, setShowMoreInfo, setInputs, moreInfoDataHandler }) => {
+	const { toggleLoading } = useContext(CountryListLoadingContext);
 	const [country] = data;
 
 	const countryName = country.name.official;
@@ -50,6 +53,7 @@ export const CountryMoreInfo = ({ data, setShowMoreInfo, setInputs, moreInfoData
 		: 'Border countries';
 
 	const handleBack = () => {
+		toggleLoading();
 		setShowMoreInfo(false);
 		setInputs({ searchCountry: '', continentSelect: '' });
 	};
