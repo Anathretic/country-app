@@ -1,8 +1,8 @@
 import { useContext } from 'react';
-import { CountryListLoadingContext } from '../../context/CountryListLoadingContext';
+import { CountryListLoaderContext } from '../../context/CountryListLoaderContext';
 
 export const CountryItem = ({ data, moreInfoDataHandler }) => {
-	const { cursorLoading, toggleLoading } = useContext(CountryListLoadingContext);
+	const { cursorLoading, toggleLoading } = useContext(CountryListLoaderContext);
 
 	return (
 		<div className={`country-list-item ${cursorLoading && 'cursor-loader'}`}>

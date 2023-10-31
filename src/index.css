@@ -275,6 +275,10 @@ body {
 	border-radius: 10px;
 }
 
+.country-more-info-flag-loader {
+	margin: 3em 0;
+}
+
 .country-more-info-title {
 	font-size: 1.5em;
 	font-weight: bold;

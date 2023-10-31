@@ -2,10 +2,11 @@ import { useContext } from 'react';
 import { handlePluralTitle } from '../../utils/handlePluralTitle';
 import { scrollToTop } from '../../utils/scrollToTop';
 import { CountryMoreInfoBox } from './CountryMoreInfoBox';
-import { CountryListLoadingContext } from '../../context/CountryListLoadingContext';
+import { CountryListLoaderContext } from '../../context/CountryListLoaderContext';
+import { CirclesLoader } from '../Loaders';
 
-export const CountryMoreInfo = ({ data, setShowMoreInfo, setInputs, moreInfoDataHandler }) => {
-	const { toggleLoading } = useContext(CountryListLoadingContext);
+export const CountryMoreInfo = ({ data, setShowMoreInfo, setInputs, moreInfoDataHandler, moreInfoLoader }) => {
+	const { toggleLoading } = useContext(CountryListLoaderContext);
 	const [country] = data;
 
 	const countryName = country.name.official;
@@ -60,7 +61,11 @@ export const CountryMoreInfo = ({ data, setShowMoreInfo, setInputs, moreInfoData
 
 	return (
 		<div className='country-more-info-wrapper'>
-			<img className='country-more-info-flag' src={country.flags.png} alt={country.flags.alt} />
+			{moreInfoLoader ? (
+				<CirclesLoader />
+			) : (
+				<img className='country-more-info-flag' src={country.flags.png} alt={country.flags.alt} />
+			)}
 			<p className='country-more-info-title'>{countryName}</p>
 			<CountryMoreInfoBox label='Native name' dataSpan={countryNativeName} />
 			<CountryMoreInfoBox label='Capital' dataSpan={countryCapital} />

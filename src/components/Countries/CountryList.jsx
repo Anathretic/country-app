@@ -4,7 +4,7 @@ import { CountryMoreInfo } from './CountryMoreInfo';
 import { CountryListInputFilter, CountryListSelectFilter } from './CountryListFilters';
 import { GoToTopBtn } from '../GoToTopBtn';
 
-import { CountryListLoadingContext } from '../../context/CountryListLoadingContext';
+import { CountryListLoaderContext } from '../../context/CountryListLoaderContext';
 import { useFilterInputs } from '../../hooks/useFilterInputs';
 import { DataHandler } from '../../helpers/getDataHelper';
 import { filterCountryList } from '../../helpers/filterCountryList';
@@ -14,18 +14,24 @@ import { scrollToTop } from '../../utils/scrollToTop';
 export const CountryList = ({ countries }) => {
 	const [showMoreInfo, setShowMoreInfo] = useState(false);
 	const [moreInfoData, setMoreInfoData] = useState([]);
-	const { cursorLoading } = useContext(CountryListLoadingContext);
+	const [moreInfoLoader, setMoreInfoLoader] = useState(false);
+	
+	const { cursorLoading } = useContext(CountryListLoaderContext);
 	const [inputs, setInputs, handleInputChange] = useFilterInputs();
 
 	const moreInfoDataHandler = id => {
 		countries.find(data => {
 			if (data.cca3 === id) {
+				setMoreInfoLoader(true);
 				DataHandler(id)
 					.then(res => {
 						setMoreInfoData(res);
 						setShowMoreInfo(true);
 					})
-					.catch(err => console.log(err));
+					.catch(err => console.log(err))
+					.finally(() => {
+						setMoreInfoLoader(false);
+					});
 			}
 		});
 	};
@@ -42,6 +48,7 @@ export const CountryList = ({ countries }) => {
 					setShowMoreInfo={setShowMoreInfo}
 					setInputs={setInputs}
 					moreInfoDataHandler={moreInfoDataHandler}
+					moreInfoLoader={moreInfoLoader}
 				/>
 			) : (
 				<>

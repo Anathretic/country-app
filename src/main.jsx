@@ -3,16 +3,17 @@ import ReactDOM from 'react-dom/client';
 import App from './App.jsx';
 import './index.css';
 import { BrowserRouter } from 'react-router-dom';
+
 import { DarkModeProvider } from './context/DarkModeContext.jsx';
-import { CountryListLoadingProvider } from './context/CountryListLoadingContext.jsx';
+import { CountryListLoaderProvider } from './context/CountryListLoaderContext.jsx';
 
 ReactDOM.createRoot(document.getElementById('root')).render(
 	<React.StrictMode>
 		<BrowserRouter>
 			<DarkModeProvider>
-				<CountryListLoadingProvider>
+				<CountryListLoaderProvider>
 					<App />
-				</CountryListLoadingProvider>
+				</CountryListLoaderProvider>
 			</DarkModeProvider>
 		</BrowserRouter>
 	</React.StrictMode>
