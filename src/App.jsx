@@ -5,7 +5,7 @@ import { DataHandler } from './helpers/getDataHelper';
 import { CountryList } from './components/Countries/CountryList';
 import { Header } from './components/Header';
 import { Footer } from './components/Footer';
-import { BarsLoader } from './components/Loader';
+import { BarsLoader } from './components/Loaders';
 import { PageNotFound } from './components/PageNotFound';
 
 import { DarkModeContext } from './context/DarkModeContext';
