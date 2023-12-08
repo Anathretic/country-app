@@ -10,13 +10,16 @@ export const DataHandler = async id => {
 				'Content-Type': 'application/json',
 			},
 			body: JSON.stringify(),
-		});
+		}).catch(err => console.log('Server is probably down!', err.message));
 
-		const jsonResponse = await response.json();
-		if (response.status === 200) {
-			resolve(jsonResponse);
-		} else {
-			reject(jsonResponse);
+		if(response) {
+			const jsonResponse = await response.json();
+
+			if (response.status === 200) {
+				resolve(jsonResponse);
+			} else {
+				reject(jsonResponse);
+			}
 		}
 	});
 };
