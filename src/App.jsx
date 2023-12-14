@@ -34,7 +34,7 @@ function App() {
 		<div className={`app ${darkMode ? 'dark-mode' : 'light-mode'}`}>
 			<Header />
 			<Routes>
-				<Route path='/' element={<div>{isLoading ? <BarsLoader /> : <CountryList countries={countries} />}</div>} />
+				<Route path='/' element={<main>{isLoading ? <BarsLoader /> : <CountryList countries={countries} />}</main>} />
 				<Route path='*' element={<PageNotFound />} />
 			</Routes>
 			<Footer />
