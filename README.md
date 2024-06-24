@@ -25,4 +25,4 @@ The code is refactored and divided into components and custom hooks.
 
 **Used:** JavaScript, React (incl. Context), CSS.
 
-**URL:** [Countrypedia](https://countrypedia.online/)
+**URL:** [Countrypedia](https://countrypedia-project.vercel.app/)
