@@ -218,6 +218,8 @@ body {
 }
 
 .country-list-box-img img {
+	max-width: 200px;
+	max-height: 100px;
 	width: 100%;
 	border-radius: 10px;
 }
@@ -475,6 +477,8 @@ body {
 	}
 
 	.country-list-box-img img {
+		max-width: none;
+		max-height: none;
 		width: 200px;
 		height: 100px;
 	}
