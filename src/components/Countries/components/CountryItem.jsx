@@ -1,7 +1,7 @@
 import { useContext } from 'react';
-import { CountryListLoaderContext } from '../../context/CountryListLoaderContext';
+import { CountryListLoaderContext } from '../../../context/CountryListLoaderContext';
 
-export const CountryItem = ({ data, moreInfoDataHandler }) => {
+export const CountryItem = ({ data, setCountryID, setShowMoreInfo }) => {
 	const { cursorLoading, toggleLoading } = useContext(CountryListLoaderContext);
 
 	return (
@@ -11,7 +11,8 @@ export const CountryItem = ({ data, moreInfoDataHandler }) => {
 					type='button'
 					className={`country-list-box-img ${cursorLoading && 'events-blocker'}`}
 					onClick={() => {
-						moreInfoDataHandler(data.cca3);
+						setCountryID(data.cca3);
+						setShowMoreInfo(true);
 						toggleLoading();
 					}}>
 					<img src={data.flags.png} alt={`Flag of ${data.name.common}`} />

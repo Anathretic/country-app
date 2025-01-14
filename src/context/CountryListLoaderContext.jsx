@@ -2,7 +2,7 @@ import { createContext, useState } from 'react';
 
 export const CountryListLoaderContext = createContext();
 
-export const CountryListLoaderProvider = ({ children }) => {
+const CountryListLoaderProvider = ({ children }) => {
 	const [cursorLoading, setCursorLoading] = useState(false);
 
 	const toggleLoading = () => {
@@ -15,3 +15,5 @@ export const CountryListLoaderProvider = ({ children }) => {
 		</CountryListLoaderContext.Provider>
 	);
 };
+
+export default CountryListLoaderProvider;

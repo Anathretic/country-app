@@ -1,25 +1,22 @@
 export const DataHandler = async id => {
-	return new Promise(async (resolve, reject) => {
-		const apiUrl = 'https://restcountries.com/v3.1';
-		let endOfUrl = '/all';
-		if (id) {
-			endOfUrl = `/alpha/${id}`;
-		}
+	try {
+		const apiUrl = 'https://restcountries.com/v3.1/';
+		let endOfUrl = id ? `alpha/${id}` : 'all';
+
 		const response = await fetch(`${apiUrl}${endOfUrl}`, {
 			headers: {
 				'Content-Type': 'application/json',
 			},
-			body: JSON.stringify(),
-		}).catch(err => console.log('Server is probably down!', err.message));
+		});
 
-		if(response) {
-			const jsonResponse = await response.json();
-
-			if (response.status === 200) {
-				resolve(jsonResponse);
-			} else {
-				reject(jsonResponse);
-			}
+		if (!response.ok) {
+			const errorResponse = await response.json();
+			throw new Error(JSON.stringify(errorResponse));
 		}
-	});
+
+		return await response.json();
+	} catch (error) {
+		console.error('Error occured: ', error.message);
+		throw error;
+	}
 };

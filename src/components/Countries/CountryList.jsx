@@ -1,40 +1,23 @@
 import { useContext, useEffect, useState } from 'react';
-import { CountryItem } from './CountryItem';
-import { CountryMoreInfo } from './CountryMoreInfo';
-import { CountryListInputFilter, CountryListSelectFilter } from './CountryListFilters';
+import { CountryItem } from './components/CountryItem';
+import { CountryMoreInfo } from './components/CountryMoreInfo/CountryMoreInfo';
+import { CountryListInputFilter, CountryListSelectFilter } from './components/CountryListFilters';
 import { GoToTopBtn } from '../GoToTopBtn';
 
 import { CountryListLoaderContext } from '../../context/CountryListLoaderContext';
+import { GetCountryDataContext } from '../../context/GetCountryDataContext';
 import { useFilterInputs } from '../../hooks/useFilterInputs';
-import { DataHandler } from '../../helpers/getDataHelper';
-import { filterCountryList } from '../../helpers/filterCountryList';
-import { sortCountryList } from '../../helpers/sortCountryList';
+import { filterCountryList } from '../../helpers/filterCountryListHelper';
+import { sortCountryList } from '../../helpers/sortCountryListHelper';
 import { scrollToTop } from '../../utils/scrollToTop';
 
-export const CountryList = ({ countries }) => {
+export const CountryList = () => {
 	const [showMoreInfo, setShowMoreInfo] = useState(false);
-	const [moreInfoData, setMoreInfoData] = useState([]);
-	const [moreInfoLoader, setMoreInfoLoader] = useState(false);
-	
-	const { cursorLoading } = useContext(CountryListLoaderContext);
-	const [inputs, setInputs, handleInputChange] = useFilterInputs();
+	const [countryID, setCountryID] = useState('');
 
-	const moreInfoDataHandler = id => {
-		countries.find(data => {
-			if (data.cca3 === id) {
-				setMoreInfoLoader(true);
-				DataHandler(id)
-					.then(res => {
-						setMoreInfoData(res);
-						setShowMoreInfo(true);
-					})
-					.catch(err => console.log(err))
-					.finally(() => {
-						setMoreInfoLoader(false);
-					});
-			}
-		});
-	};
+	const { cursorLoading } = useContext(CountryListLoaderContext);
+	const { countryData } = useContext(GetCountryDataContext);
+	const [inputs, setInputs, handleInputChange] = useFilterInputs();
 
 	useEffect(() => {
 		scrollToTop();
@@ -44,11 +27,10 @@ export const CountryList = ({ countries }) => {
 		<>
 			{showMoreInfo ? (
 				<CountryMoreInfo
-					data={moreInfoData}
 					setShowMoreInfo={setShowMoreInfo}
 					setInputs={setInputs}
-					moreInfoDataHandler={moreInfoDataHandler}
-					moreInfoLoader={moreInfoLoader}
+					countryID={countryID}
+					setCountryID={setCountryID}
 				/>
 			) : (
 				<>
@@ -70,9 +52,16 @@ export const CountryList = ({ countries }) => {
 							<p>To show more info, click the flag!</p>
 						</div>
 						<div className='country-list-container'>
-							{countries
+							{countryData
 								.filter(country => filterCountryList(country, inputs.searchCountry, inputs.continentSelect))
-								.map(data => <CountryItem key={data.cca3} data={data} moreInfoDataHandler={moreInfoDataHandler} />)
+								.map(data => (
+									<CountryItem
+										key={data.cca3}
+										data={data}
+										setCountryID={setCountryID}
+										setShowMoreInfo={setShowMoreInfo}
+									/>
+								))
 								.sort((firstCountry, secondCountry) => sortCountryList(firstCountry, secondCountry))}
 						</div>
 					</div>

@@ -1,0 +1,1 @@
+export const getPluralTitle = (titleArray, singular, plural) => (titleArray.length === 1 ? singular : plural);
