@@ -236,6 +236,38 @@ body {
 	font-size: 1em;
 }
 
+.country-list-special-box {
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	flex-direction: column;
+	padding: 0 2em 3.4em;
+	width: 100%;
+	min-height: 10vh;
+}
+
+.country-list-special-text {
+	padding-top: 1em;
+	text-align: center;
+	font-size: 1.5em;
+}
+
+.country-list-special-btn {
+	padding: 0.75em 2em;
+	margin: 3em 0;
+	width: 65%;
+	max-width: 250px;
+	background-color: rgb(109, 109, 109);
+	color: white;
+	border: none;
+	border-radius: 10px;
+	font-family: 'Ysabeau Infant', sans-serif;
+	font-size: 1em;
+	text-transform: uppercase;
+	transition: background-color 0.3s;
+	cursor: pointer;
+}
+
 .country-more-info-wrapper,
 .country-more-info-container {
 	display: flex;
@@ -303,6 +335,7 @@ body {
 	background-color: rgb(109, 109, 109);
 	color: white;
 	border: none;
+	font-family: 'Ysabeau Infant', sans-serif;
 	transition: background-color 0.3s;
 	cursor: pointer;
 }
@@ -380,6 +413,7 @@ body {
 	background-color: rgb(109, 109, 109);
 	color: white;
 	font-size: 1em;
+	font-family: 'Ysabeau Infant', sans-serif;
 	text-transform: uppercase;
 	text-decoration: none;
 	border-radius: 8px;
@@ -501,6 +535,10 @@ body {
 		font-size: 34px;
 	}
 
+	.country-list-special-text {
+		font-size: 1.65em;
+	}
+
 	.country-list-box-img img {
 		width: 230px;
 		height: 120px;
@@ -546,10 +584,6 @@ body {
 		font-size: 1em;
 		width: 30%;
 	}
-	.country-more-info-border-button:hover,
-	.country-more-info-button:hover {
-		background-color: rgb(155, 155, 155);
-	}
 
 	.footer-icons .footer-icon {
 		margin: 1em;
@@ -565,6 +599,9 @@ body {
 		font-size: 1.2em;
 	}
 
+	.country-more-info-border-button:hover,
+	.country-more-info-button:hover,
+	.country-list-special-btn:hover,
 	.page-not-found-btn:hover {
 		background-color: rgb(155, 155, 155);
 	}
@@ -581,6 +618,10 @@ body {
 
 	.country-list-container {
 		grid-template-columns: repeat(4, 1fr);
+		min-height: 44vh;
+	}
+
+	.country-list-special-box {
 		min-height: 44vh;
 	}
 

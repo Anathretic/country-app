@@ -16,7 +16,7 @@ export const CountryList = () => {
 	const [countryID, setCountryID] = useState('');
 
 	const { cursorLoading } = useContext(CountryListLoaderContext);
-	const { countryData } = useContext(GetCountryDataContext);
+	const { countryData, setRefreshData } = useContext(GetCountryDataContext);
 	const [inputs, setInputs, handleInputChange] = useFilterInputs();
 
 	useEffect(() => {
@@ -51,19 +51,33 @@ export const CountryList = () => {
 						<div className='country-list-instructions'>
 							<p>To show more info, click the flag!</p>
 						</div>
-						<div className='country-list-container'>
-							{countryData
-								.filter(country => filterCountryList(country, inputs.searchCountry, inputs.continentSelect))
-								.map(data => (
-									<CountryListItem
-										key={data.cca3}
-										data={data}
-										setCountryID={setCountryID}
-										setShowDetails={setShowDetails}
-									/>
-								))
-								.sort((firstCountry, secondCountry) => sortCountryList(firstCountry, secondCountry))}
-						</div>
+						{countryData.length > 0 ? (
+							<div className='country-list-container'>
+								{countryData
+									.filter(country => filterCountryList(country, inputs.searchCountry, inputs.continentSelect))
+									.map(data => (
+										<CountryListItem
+											key={data.cca3}
+											data={data}
+											setCountryID={setCountryID}
+											setShowDetails={setShowDetails}
+										/>
+									))
+									.sort((firstCountry, secondCountry) => sortCountryList(firstCountry, secondCountry))}
+							</div>
+						) : (
+							<div className='country-list-special-box'>
+								<p className='country-list-special-text'>Ups, something went wrong..</p>
+								<button
+									onClick={() => {
+										setRefreshData(true);
+									}}
+									type='button'
+									className='country-list-special-btn'>
+									Try again
+								</button>
+							</div>
+						)}
 					</div>
 				</>
 			)}
