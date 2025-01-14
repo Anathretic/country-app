@@ -1,7 +1,7 @@
 import { getPluralTitle } from '../../../../../../utils/getPluralTitle';
 import { getSafeValue } from '../../../../../../utils/getSafeValue';
 
-export const generateCountryDetails = async ({ country }) => {
+export const generateCountryItemDetails = async ({ country }) => {
 	const countryDetails = {
 		name: country.name.official,
 		nativeName: getSafeValue(country.name.nativeName ? Object.values(country.name.nativeName)[0].official : null),

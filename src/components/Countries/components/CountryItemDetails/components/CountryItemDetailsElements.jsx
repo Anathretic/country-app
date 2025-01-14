@@ -1,7 +1,7 @@
 import { getSafeValue } from '../../../../../utils/getSafeValue';
 import { scrollToTop } from '../../../../../utils/scrollToTop';
 
-export const CountryMoreInfoBox = ({ label, dataSpan, children }) => {
+export const CountryItemDetailsBox = ({ label, dataSpan, children }) => {
 	return (
 		<div className='country-more-info-container'>
 			<p>{label}:</p>
@@ -11,7 +11,7 @@ export const CountryMoreInfoBox = ({ label, dataSpan, children }) => {
 	);
 };
 
-export const CountryMoreInfoBorderBtns = ({ selectedCountry, setCountryID }) => {
+export const CountryItemDetailsBorderBtns = ({ selectedCountry, setCountryID }) => {
 	return (
 		<div className='country-more-info-button-box'>
 			{getSafeValue(
