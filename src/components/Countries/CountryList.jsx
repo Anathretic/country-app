@@ -1,7 +1,7 @@
 import { useContext, useEffect, useState } from 'react';
-import { CountryItem } from './components/CountryItem';
-import { CountryMoreInfo } from './components/CountryMoreInfo/CountryMoreInfo';
-import { CountryListInputFilter, CountryListSelectFilter } from './components/CountryListFilters';
+import { CountryListItem } from './components/CountryListItem';
+import { CountryItemDetails } from './components/CountryItemDetails/CountryItemDetails';
+import { CountryListInputFilterElement, CountryListSelectFilterElement } from './components/CountryListFilterElements';
 import { GoToTopBtn } from '../GoToTopBtn';
 
 import { CountryListLoaderContext } from '../../context/CountryListLoaderContext';
@@ -12,7 +12,7 @@ import { sortCountryList } from '../../helpers/sortCountryListHelper';
 import { scrollToTop } from '../../utils/scrollToTop';
 
 export const CountryList = () => {
-	const [showMoreInfo, setShowMoreInfo] = useState(false);
+	const [showDetails, setShowDetails] = useState(false);
 	const [countryID, setCountryID] = useState('');
 
 	const { cursorLoading } = useContext(CountryListLoaderContext);
@@ -21,13 +21,13 @@ export const CountryList = () => {
 
 	useEffect(() => {
 		scrollToTop();
-	}, [showMoreInfo]);
+	}, [showDetails]);
 
 	return (
 		<>
-			{showMoreInfo ? (
-				<CountryMoreInfo
-					setShowMoreInfo={setShowMoreInfo}
+			{showDetails ? (
+				<CountryItemDetails
+					setShowDetails={setShowDetails}
 					setInputs={setInputs}
 					countryID={countryID}
 					setCountryID={setCountryID}
@@ -37,12 +37,12 @@ export const CountryList = () => {
 					<GoToTopBtn />
 					<div className='country-list-wrapper'>
 						<div className='country-list-filters'>
-							<CountryListInputFilter
+							<CountryListInputFilterElement
 								value={inputs.searchCountry}
 								onChange={handleInputChange}
 								disabled={cursorLoading ? true : false}
 							/>
-							<CountryListSelectFilter
+							<CountryListSelectFilterElement
 								value={inputs.continentSelect}
 								onChange={handleInputChange}
 								disabled={cursorLoading ? true : false}
@@ -55,11 +55,11 @@ export const CountryList = () => {
 							{countryData
 								.filter(country => filterCountryList(country, inputs.searchCountry, inputs.continentSelect))
 								.map(data => (
-									<CountryItem
+									<CountryListItem
 										key={data.cca3}
 										data={data}
 										setCountryID={setCountryID}
-										setShowMoreInfo={setShowMoreInfo}
+										setShowDetails={setShowDetails}
 									/>
 								))
 								.sort((firstCountry, secondCountry) => sortCountryList(firstCountry, secondCountry))}

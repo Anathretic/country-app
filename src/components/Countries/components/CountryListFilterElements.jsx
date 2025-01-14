@@ -1,6 +1,6 @@
 import { FaSearch } from 'react-icons/fa';
 
-export const CountryListInputFilter = ({ value, onChange, ...otherInputProps }) => {
+export const CountryListInputFilterElement = ({ value, onChange, ...otherInputProps }) => {
 	return (
 		<>
 			<input
@@ -18,7 +18,7 @@ export const CountryListInputFilter = ({ value, onChange, ...otherInputProps }) 
 	);
 };
 
-export const CountryListSelectFilter = ({ value, onChange, ...otherSelectProps }) => {
+export const CountryListSelectFilterElement = ({ value, onChange, ...otherSelectProps }) => {
 	return (
 		<select name='continentSelect' value={value} onChange={onChange} {...otherSelectProps}>
 			<option value=''>All countries</option>
