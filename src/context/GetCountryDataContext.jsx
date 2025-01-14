@@ -5,6 +5,7 @@ export const GetCountryDataContext = createContext();
 
 const GetCountryDataProvider = ({ children }) => {
 	const [countryData, setCountryData] = useState([]);
+	const [refreshData, setRefreshData] = useState(false);
 	const [isLoading, setIsLoading] = useState(false);
 
 	useEffect(() => {
@@ -14,10 +15,17 @@ const GetCountryDataProvider = ({ children }) => {
 				setCountryData(data);
 			})
 			.catch(err => console.error(err.message))
-			.finally(() => setIsLoading(false));
-	}, []);
+			.finally(() => {
+				setIsLoading(false);
+				setRefreshData(false);
+			});
+	}, [refreshData]);
 
-	return <GetCountryDataContext.Provider value={{ isLoading, countryData }}>{children}</GetCountryDataContext.Provider>;
+	return (
+		<GetCountryDataContext.Provider value={{ isLoading, countryData, setRefreshData }}>
+			{children}
+		</GetCountryDataContext.Provider>
+	);
 };
 
 export default GetCountryDataProvider;
