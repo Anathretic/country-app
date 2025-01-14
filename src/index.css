@@ -268,8 +268,8 @@ body {
 	cursor: pointer;
 }
 
-.country-more-info-wrapper,
-.country-more-info-container {
+.country-item-details-wrapper,
+.country-item-details-container {
 	display: flex;
 	justify-content: center;
 	align-items: center;
@@ -277,18 +277,18 @@ body {
 	text-align: center;
 }
 
-.country-more-info-wrapper,
-.country-more-info-title {
+.country-item-details-wrapper,
+.country-item-details-title {
 	padding: 1.5em 1em;
 }
 
-.country-more-info-container {
+.country-item-details-container {
 	padding: 1em;
 	width: 100%;
 	font-size: 1.1em;
 }
 
-.country-more-info-container::after {
+.country-item-details-container::after {
 	content: '';
 	margin-top: 2em;
 	width: 100%;
@@ -296,12 +296,12 @@ body {
 	background-color: var(--text-and-special-color);
 }
 
-.country-more-info-container:last-of-type::after {
+.country-item-details-container:last-of-type::after {
 	margin-top: 0;
 	background: transparent;
 }
 
-.country-more-info-flag {
+.country-item-details-flag {
 	aspect-ratio: 160/80;
 	margin-top: 3em;
 	width: 100%;
@@ -309,29 +309,25 @@ body {
 	border-radius: 10px;
 }
 
-.country-more-info-flag-loader {
-	margin: 3em 0;
-}
-
-.country-more-info-title {
+.country-item-details-title {
 	font-size: 1.5em;
 	font-weight: bold;
 }
 
-.country-more-info-container p {
+.country-item-details-container p {
 	margin-bottom: 5px;
 	font-weight: bold;
 }
 
-.country-more-info-button-box {
+.country-item-details-button-box {
 	display: flex;
 	justify-content: center;
 	align-items: center;
 	flex-direction: column;
 }
 
-.country-more-info-border-button,
-.country-more-info-button {
+.country-item-details-border-button,
+.country-item-details-button {
 	background-color: rgb(109, 109, 109);
 	color: white;
 	border: none;
@@ -340,17 +336,20 @@ body {
 	cursor: pointer;
 }
 
-.country-more-info-border-button {
+.country-item-details-border-button {
 	margin: 1em;
 	padding: 0.75em 2em;
 	width: 100%;
+	font-size: 0.8em;
 	border-radius: 5px;
 }
 
-.country-more-info-button {
+.country-item-details-button {
 	padding: 1em 2em;
 	margin: 3em;
 	width: 80%;
+	max-width: 250px;
+	font-size: 0.9em;
 	border-radius: 10px;
 	text-transform: uppercase;
 }
@@ -453,7 +452,7 @@ body {
 		display: inline-block;
 	}
 
-	.country-more-info-border-button {
+	.country-item-details-border-button {
 		padding: 0.75em 3em;
 	}
 
@@ -476,11 +475,11 @@ body {
 		height: 120px;
 	}
 
-	.country-more-info-container::after {
+	.country-item-details-container::after {
 		width: 80%;
 	}
 
-	.country-more-info-button {
+	.country-item-details-button {
 		width: 50%;
 	}
 }
@@ -544,43 +543,43 @@ body {
 		height: 120px;
 	}
 
-	.country-more-info-wrapper,
-	.country-more-info-title {
+	.country-item-details-wrapper,
+	.country-item-details-title {
 		padding: 2em 1em;
 	}
 
-	.country-more-info-container {
+	.country-item-details-container {
 		font-size: 1.2em;
 	}
 
-	.country-more-info-container::after {
+	.country-item-details-container::after {
 		width: 60%;
 	}
 
-	.country-more-info-title {
+	.country-item-details-title {
 		font-size: 1.8em;
 	}
 
-	.country-more-info-flag {
+	.country-item-details-flag {
 		max-width: 500px;
 	}
 
-	.country-more-info-button-box {
+	.country-item-details-button-box {
 		flex-direction: row;
 		flex-wrap: wrap;
 	}
 
-	.country-more-info-button-box button {
+	.country-item-details-button-box button {
 		display: flex;
 		justify-content: center;
 		width: 10%;
 	}
 
-	.country-more-info-border-button {
+	.country-item-details-border-button {
 		padding: 0.75em 4em;
 	}
 
-	.country-more-info-button {
+	.country-item-details-button {
 		font-size: 1em;
 		width: 30%;
 	}
@@ -599,8 +598,8 @@ body {
 		font-size: 1.2em;
 	}
 
-	.country-more-info-border-button:hover,
-	.country-more-info-button:hover,
+	.country-item-details-border-button:hover,
+	.country-item-details-button:hover,
 	.country-list-special-btn:hover,
 	.page-not-found-btn:hover {
 		background-color: rgb(155, 155, 155);
@@ -625,7 +624,7 @@ body {
 		min-height: 44vh;
 	}
 
-	.country-more-info-button {
+	.country-item-details-button {
 		width: 20%;
 	}
 }
