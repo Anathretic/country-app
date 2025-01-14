@@ -48,11 +48,11 @@ export const CountryItemDetails = ({ setShowDetails, setInputs, countryID, setCo
 	};
 
 	return (
-		<div className='country-more-info-wrapper'>
+		<div className='country-item-details-wrapper'>
 			{selectedCountryDetails ? (
 				<>
-					<img className='country-more-info-flag' src={selectedCountry.flags.png} alt={selectedCountry.flags.alt} />
-					<p className='country-more-info-title'>{selectedCountryDetails.countryDetails.name}</p>
+					<img className='country-item-details-flag' src={selectedCountry.flags.png} alt={selectedCountry.flags.alt} />
+					<p className='country-item-details-title'>{selectedCountryDetails.countryDetails.name}</p>
 					<CountryItemDetailsBox label='Native name' dataSpan={selectedCountryDetails.countryDetails.nativeName} />
 					<CountryItemDetailsBox label='Capital' dataSpan={selectedCountryDetails.countryDetails.capital} />
 					<CountryItemDetailsBox label='Region' dataSpan={selectedCountryDetails.countryDetails.region} />
@@ -77,7 +77,7 @@ export const CountryItemDetails = ({ setShowDetails, setInputs, countryID, setCo
 					<CountryItemDetailsBox label={selectedCountryDetails.titles.borders}>
 						<CountryItemDetailsBorderBtns selectedCountry={selectedCountry} setCountryID={setCountryID} />
 					</CountryItemDetailsBox>
-					<button type='button' className='country-more-info-button' onClick={handleBack}>
+					<button type='button' className='country-item-details-button' onClick={handleBack}>
 						home
 					</button>
 				</>

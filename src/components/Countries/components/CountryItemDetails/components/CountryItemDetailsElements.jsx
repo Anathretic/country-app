@@ -3,7 +3,7 @@ import { scrollToTop } from '../../../../../utils/scrollToTop';
 
 export const CountryItemDetailsBox = ({ label, dataSpan, children }) => {
 	return (
-		<div className='country-more-info-container'>
+		<div className='country-item-details-container'>
 			<p>{label}:</p>
 			<span>{dataSpan}</span>
 			{children}
@@ -13,13 +13,13 @@ export const CountryItemDetailsBox = ({ label, dataSpan, children }) => {
 
 export const CountryItemDetailsBorderBtns = ({ selectedCountry, setCountryID }) => {
 	return (
-		<div className='country-more-info-button-box'>
+		<div className='country-item-details-button-box'>
 			{getSafeValue(
 				selectedCountry.borders
 					? selectedCountry.borders.map(border => (
 							<button
 								type='button'
-								className='country-more-info-border-button'
+								className='country-item-details-border-button'
 								key={border}
 								onClick={() => {
 									scrollToTop();
