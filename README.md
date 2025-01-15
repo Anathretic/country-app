@@ -2,16 +2,16 @@
 
 ## About
 
-My second version of the app, which allows you to search for information about a country (200+ countries) and its data, such as population or currency.
+My second version of the app, which allows you to search for information about a country (200+ countries) and its data, such as population or currency. Due to the fact that the free API server or the backend itself sometimes exhibits unexpected behaviour, a special context was created to manage the download. If there are problems with the download, a button is displayed to resubmit the request.
 
 ## Coding & Problems
 
 I decided to move the whole project to React, which has brought many benefits:
 
-- Created function based on promise to get the data (less code to write),
-- (MoreInfo) User can directly switch between countries using the border countries buttons,
+- Created modern data handler and a special context to get the data without issues,
+- User can directly switch between countries using the border countries buttons (when the details of the selected country are displayed),
 - Improved inputs and sort countries alphabetically,
-- Created dark mode based on Context,
+- Created dark mode based on context,
 - Changed loader,
 - Cleared CSS
 
