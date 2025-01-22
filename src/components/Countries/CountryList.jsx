@@ -3,6 +3,7 @@ import { CountryListItem } from './components/CountryListItem';
 import { CountryItemDetails } from './components/CountryItemDetails/CountryItemDetails';
 import { CountryListInputFilterElement, CountryListSelectFilterElement } from './components/CountryListFilterElements';
 import { GoToTopBtn } from '../GoToTopBtn';
+import { BarsLoader } from '../Loaders';
 
 import { CountryListLoaderContext } from '../../context/CountryListLoaderContext';
 import { GetCountryDataContext } from '../../context/GetCountryDataContext';
@@ -16,8 +17,13 @@ export const CountryList = () => {
 	const [countryID, setCountryID] = useState('');
 
 	const { cursorLoading } = useContext(CountryListLoaderContext);
-	const { countryData, setRefreshData } = useContext(GetCountryDataContext);
+	const { countryData, setRefreshData, isLoading, setIsLoading } = useContext(GetCountryDataContext);
 	const [inputs, setInputs, handleInputChange] = useFilterInputs();
+
+	const handleRefreshDataBtn = () => {
+		setRefreshData(true);
+		setIsLoading(true);
+	};
 
 	useEffect(() => {
 		scrollToTop();
@@ -51,7 +57,9 @@ export const CountryList = () => {
 						<div className='country-list-instructions'>
 							<p>To show more info, click the flag!</p>
 						</div>
-						{countryData.length > 0 ? (
+						{isLoading ? (
+							<BarsLoader />
+						) : countryData.length > 0 ? (
 							<div className='country-list-container'>
 								{countryData
 									.filter(country => filterCountryList(country, inputs.searchCountry, inputs.continentSelect))
@@ -68,12 +76,7 @@ export const CountryList = () => {
 						) : (
 							<div className='country-list-special-box'>
 								<p className='country-list-special-text'>Ups, something went wrong..</p>
-								<button
-									onClick={() => {
-										setRefreshData(true);
-									}}
-									type='button'
-									className='country-list-special-btn'>
+								<button onClick={handleRefreshDataBtn} type='button' className='country-list-special-btn'>
 									Try again
 								</button>
 							</div>
