@@ -39,7 +39,7 @@ export const CountryList = () => {
 					setCountryID={setCountryID}
 				/>
 			) : (
-				<>
+				<section>
 					<GoToTopBtn />
 					<div className='country-list-wrapper'>
 						<div className='country-list-filters'>
@@ -82,7 +82,7 @@ export const CountryList = () => {
 							</div>
 						)}
 					</div>
-				</>
+				</section>
 			)}
 		</>
 	);
