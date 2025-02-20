@@ -1,10 +1,9 @@
-import { useContext, useEffect, useState } from 'react';
-import { CountryListItem } from './components/CountryListItem';
+import { useContext, useEffect, useMemo, useState } from 'react';
 import { CountryItemDetails } from './components/CountryItemDetails/CountryItemDetails';
+import { CountryListItem } from './components/CountryListItem';
 import { CountryListInputFilterElement, CountryListSelectFilterElement } from './components/CountryListFilterElements';
 import { GoToTopBtn } from '../GoToTopBtn';
 import { BarsLoader } from '../Loaders';
-
 import { CountryListLoaderContext } from '../../context/CountryListLoaderContext';
 import { GetCountryDataContext } from '../../context/GetCountryDataContext';
 import { useFilterInputs } from '../../hooks/useFilterInputs';
@@ -17,17 +16,32 @@ export const CountryList = () => {
 	const [countryID, setCountryID] = useState('');
 
 	const { cursorLoading } = useContext(CountryListLoaderContext);
-	const { countryData, setRefreshData, isLoading, setIsLoading } = useContext(GetCountryDataContext);
+	const { countryData, setRefreshData, isLoading, setIsLoading, error, setError } = useContext(GetCountryDataContext);
 	const [inputs, setInputs, handleInputChange] = useFilterInputs();
 
 	const handleRefreshDataBtn = () => {
 		setRefreshData(true);
+		setError(false);
 		setIsLoading(true);
 	};
 
 	useEffect(() => {
 		scrollToTop();
 	}, [showDetails]);
+
+	const filteredCountries = useMemo(() => {
+		return countryData.filter(country => filterCountryList(country, inputs.searchCountry, inputs.continentSelect));
+	}, [countryData, inputs.searchCountry, inputs.continentSelect]);
+
+	const sortedCountries = useMemo(() => {
+		return [...filteredCountries].sort((firstCountry, secondCountry) => sortCountryList(firstCountry, secondCountry));
+	}, [filteredCountries]);
+
+	const mappedCountries = useMemo(() => {
+		return sortedCountries.map(country => (
+			<CountryListItem key={country.cca3} data={country} setCountryID={setCountryID} setShowDetails={setShowDetails} />
+		));
+	}, [sortedCountries, setCountryID, setShowDetails]);
 
 	return (
 		<>
@@ -59,20 +73,8 @@ export const CountryList = () => {
 						</div>
 						{isLoading ? (
 							<BarsLoader />
-						) : countryData.length > 0 ? (
-							<div className='country-list-container'>
-								{countryData
-									.filter(country => filterCountryList(country, inputs.searchCountry, inputs.continentSelect))
-									.map(data => (
-										<CountryListItem
-											key={data.cca3}
-											data={data}
-											setCountryID={setCountryID}
-											setShowDetails={setShowDetails}
-										/>
-									))
-									.sort((firstCountry, secondCountry) => sortCountryList(firstCountry, secondCountry))}
-							</div>
+						) : !error ? (
+							<div className='country-list-container'>{mappedCountries}</div>
 						) : (
 							<div className='country-list-special-box'>
 								<p className='country-list-special-text'>Ups, something went wrong..</p>

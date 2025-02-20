@@ -16,7 +16,6 @@ export const DataHandler = async id => {
 
 		return await response.json();
 	} catch (error) {
-		console.error('Error occured: ', error.message);
-		throw error;
+		throw new Error('Error occured: ', error.message);
 	}
 };
