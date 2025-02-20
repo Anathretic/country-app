@@ -5,7 +5,7 @@ export const CountryListItem = ({ data, setCountryID, setShowDetails }) => {
 	const { cursorLoading, toggleLoading } = useContext(CountryListLoaderContext);
 
 	return (
-		<div className={`country-list-item ${cursorLoading && 'cursor-loader'}`}>
+		<div className={`country-list-item${cursorLoading ? 'cursor-loader' : ''}`}>
 			<div className='country-list-box'>
 				<button
 					type='button'
