@@ -1,4 +1,4 @@
-import { memo, useContext, useEffect, useMemo, useState } from 'react';
+import { useContext, useEffect, useMemo, useState } from 'react';
 import { GetCountryDataContext } from '../../context/GetCountryDataContext';
 import { useFilterInputs } from '../../hooks/useFilterInputs';
 import { useDebounce } from '../../hooks/useDebounce';
@@ -10,8 +10,6 @@ import { CountryListInputFilterElement, CountryListSelectFilterElement } from '.
 import { GoToTopBtn } from '../GoToTopBtn';
 import { BarsLoader } from '../Loaders';
 import { scrollToTop } from '../../utils/scrollToTop';
-
-const MemoizedCountryListItem = memo(CountryListItem);
 
 export const CountryList = () => {
 	const [showDetails, setShowDetails] = useState(false);
@@ -35,12 +33,7 @@ export const CountryList = () => {
 
 	const mappedCountries = useMemo(() => {
 		return filteredAndSortedCountries.map(country => (
-			<MemoizedCountryListItem
-				key={country.cca3}
-				data={country}
-				setCountryID={setCountryID}
-				setShowDetails={setShowDetails}
-			/>
+			<CountryListItem key={country.cca3} data={country} setCountryID={setCountryID} setShowDetails={setShowDetails} />
 		));
 	}, [filteredAndSortedCountries, setCountryID, setShowDetails]);
 

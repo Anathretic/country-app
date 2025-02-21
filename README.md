@@ -17,7 +17,7 @@ I decided to move the whole project to React, which has brought many benefits:
 
 The code is refactored and divided into components and custom hooks.
 
-The whole application was also optimised to reduce unnecessary component re-rendering or excessive operations. To this end, I used hooks such as useMemo or useCallback, and in particular memo and lazy functions.
+The whole application was also optimised to reduce unnecessary component re-rendering or excessive operations. To this end, I used hooks such as useMemo or useCallback, and in particular memo function.
 
 ## Links & Tools
 
