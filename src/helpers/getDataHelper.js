@@ -11,7 +11,7 @@ export const DataHandler = async id => {
 
 		if (!response.ok) {
 			const errorResponse = await response.json();
-			throw new Error(JSON.stringify(errorResponse));
+			throw new Error(errorResponse?.message || 'Failed to fetch data');
 		}
 
 		return await response.json();

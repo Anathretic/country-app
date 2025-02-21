@@ -1,6 +1,5 @@
 import { useContext } from 'react';
 import { Route, Routes } from 'react-router-dom';
-
 import { DarkModeContext } from './context/DarkModeContext';
 import { CountryList } from './components/Countries/CountryList';
 import { Header } from './components/Header';

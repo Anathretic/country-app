@@ -7,4 +7,6 @@ export const filterCountryList = (country, input, select) => {
 	) {
 		return country;
 	}
+
+	return null;
 };

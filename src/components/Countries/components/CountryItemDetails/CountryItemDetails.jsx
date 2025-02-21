@@ -1,5 +1,4 @@
-import { useContext, useEffect, useState } from 'react';
-import { CountryListLoaderContext } from '../../../../context/CountryListLoaderContext';
+import { useContext, useEffect, useMemo, useState } from 'react';
 import { GetCountryDataContext } from '../../../../context/GetCountryDataContext';
 import { CountryItemDetailsBorderBtns, CountryItemDetailsBox } from './components/CountryItemDetailsElements';
 import { generateCountryItemDetails } from './components/countryDetails/generateCountryItemDetails';
@@ -9,15 +8,17 @@ export const CountryItemDetails = ({ setShowDetails, setInputs, countryID, setCo
 	const [selectedCountry, setSelectedCountry] = useState({});
 	const [selectedCountryDetails, setSelectedCountryDetails] = useState(null);
 
-	const { toggleLoading } = useContext(CountryListLoaderContext);
 	const { countryData } = useContext(GetCountryDataContext);
 
-	const selectCountry = countryID => {
-		const foundCountry = countryData.find(data => data.cca3 === countryID);
-		if (foundCountry) {
-			setSelectedCountry(foundCountry);
+	const selectedCountryMemo = useMemo(() => {
+		return countryData.find(data => data.cca3 === countryID);
+	}, [countryID, countryData]);
+
+	useEffect(() => {
+		if (selectedCountryMemo) {
+			setSelectedCountry(selectedCountryMemo);
 		}
-	};
+	}, [selectedCountryMemo]);
 
 	useEffect(() => {
 		if (selectedCountry && Object.keys(selectedCountry).length > 0) {
@@ -25,23 +26,9 @@ export const CountryItemDetails = ({ setShowDetails, setInputs, countryID, setCo
 				setSelectedCountryDetails(details);
 			});
 		}
-	}, [selectedCountry, countryID]);
-
-	useEffect(() => {
-		if (countryID) {
-			const selected = countryData.find(data => data.cca3 === countryID);
-			if (selected) {
-				setSelectedCountry(selected);
-			}
-		}
-	}, [countryID, countryData]);
-
-	useEffect(() => {
-		selectCountry(countryID);
-	}, [countryID]);
+	}, [selectedCountry]);
 
 	const handleBack = () => {
-		toggleLoading();
 		setShowDetails(false);
 		setInputs({ searchCountry: '', continentSelect: '' });
 		setCountryID(null);
