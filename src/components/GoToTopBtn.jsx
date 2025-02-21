@@ -21,7 +21,7 @@ export const GoToTopBtn = () => {
 		window.addEventListener('scroll', handleToTheTopBtn);
 
 		return () => {
-			window.addEventListener('scroll', handleToTheTopBtn);
+			window.removeEventListener('scroll', handleToTheTopBtn);
 		};
 	}, []);
 

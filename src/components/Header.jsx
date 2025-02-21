@@ -1,6 +1,5 @@
 import { useContext } from 'react';
 import { DarkModeContext } from '../context/DarkModeContext';
-
 import { IconContext } from 'react-icons';
 import { BsGlobe } from 'react-icons/bs';
 import { GiMoonBats, GiSun } from 'react-icons/gi';
