@@ -30,7 +30,6 @@ export const CountryItemDetails = ({ setShowDetails, setInputs, countryID, setCo
 
 	const handleBack = () => {
 		setShowDetails(false);
-		setInputs({ searchCountry: '', continentSelect: '' });
 		setCountryID(null);
 	};
 
@@ -42,7 +41,10 @@ export const CountryItemDetails = ({ setShowDetails, setInputs, countryID, setCo
 					<p className='country-item-details-title'>{selectedCountryDetails.countryDetails.name}</p>
 					<CountryItemDetailsBox label='Native name' dataSpan={selectedCountryDetails.countryDetails.nativeName} />
 					<CountryItemDetailsBox label='Capital' dataSpan={selectedCountryDetails.countryDetails.capital} />
-					<CountryItemDetailsBox label='Region' dataSpan={selectedCountryDetails.countryDetails.region} />
+					<CountryItemDetailsBox
+						label={selectedCountryDetails.titles.continents}
+						dataSpan={selectedCountryDetails.countryDetails.continents}
+					/>
 					<CountryItemDetailsBox label='Sub region' dataSpan={selectedCountryDetails.countryDetails.subRegion} />
 					<CountryItemDetailsBox label='Population' dataSpan={selectedCountryDetails.countryDetails.population} />
 					<CountryItemDetailsBox
@@ -53,19 +55,15 @@ export const CountryItemDetails = ({ setShowDetails, setInputs, countryID, setCo
 						label={selectedCountryDetails.titles.languages}
 						dataSpan={selectedCountryDetails.countryDetails.languages}
 					/>
-					<CountryItemDetailsBox
-						label={selectedCountryDetails.titles.topLevelDomain}
-						dataSpan={selectedCountryDetails.countryDetails.topLevelDomain}
-					/>
-					<CountryItemDetailsBox
-						label='Start of the week'
-						dataSpan={selectedCountryDetails.countryDetails.startOfWeek}
-					/>
 					<CountryItemDetailsBox label={selectedCountryDetails.titles.borders}>
-						<CountryItemDetailsBorderBtns selectedCountry={selectedCountry} setCountryID={setCountryID} />
+						<CountryItemDetailsBorderBtns
+							selectedCountry={selectedCountry}
+							setInputs={setInputs}
+							setCountryID={setCountryID}
+						/>
 					</CountryItemDetailsBox>
 					<button type='button' className='country-item-details-button' onClick={handleBack}>
-						home
+						back
 					</button>
 				</>
 			) : (
