@@ -1,9 +1,9 @@
-export const DataHandler = async id => {
+export const DataHandler = async () => {
 	try {
-		const apiUrl = 'https://restcountries.com/v3.1/';
-		let endOfUrl = id ? `alpha/${id}` : 'all';
+		const apiUrl =
+			'https://restcountries.com/v3.1/all?fields=cca3,name,flags,capital,population,continents,subregion,currencies,languages,borders';
 
-		const response = await fetch(`${apiUrl}${endOfUrl}`, {
+		const response = await fetch(`${apiUrl}`, {
 			headers: {
 				'Content-Type': 'application/json',
 			},

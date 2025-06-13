@@ -11,11 +11,11 @@ export const CountryItemDetailsBox = ({ label, dataSpan, children }) => {
 	);
 };
 
-export const CountryItemDetailsBorderBtns = ({ selectedCountry, setCountryID }) => {
+export const CountryItemDetailsBorderBtns = ({ selectedCountry, setInputs, setCountryID }) => {
 	return (
 		<div className='country-item-details-button-box'>
 			{getSafeValue(
-				selectedCountry.borders
+				selectedCountry.borders.length > 0
 					? selectedCountry.borders.map(border => (
 							<button
 								type='button'
@@ -24,6 +24,7 @@ export const CountryItemDetailsBorderBtns = ({ selectedCountry, setCountryID }) 
 								onClick={() => {
 									scrollToTop();
 									setCountryID(border);
+									setInputs({ searchCountry: '', continentSelect: '' });
 								}}>
 								{border}
 							</button>
