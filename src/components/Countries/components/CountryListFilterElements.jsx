@@ -6,7 +6,7 @@ export const CountryListInputFilterElement = ({ value, onChange, ...otherInputPr
 			<input
 				type='text'
 				name='searchCountry'
-				placeholder='Search..'
+				placeholder='Search'
 				value={value}
 				onChange={onChange}
 				{...otherInputProps}
