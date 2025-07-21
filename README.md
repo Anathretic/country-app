@@ -28,3 +28,5 @@ The whole application was also optimised to reduce unnecessary component re-rend
 **Used:** JavaScript, React (incl. Context), CSS.
 
 **URL:** [Countrypedia](https://countrypedia-project.vercel.app/)
+
+_This project is licensed under the MIT License – see the LICENSE file for details._
