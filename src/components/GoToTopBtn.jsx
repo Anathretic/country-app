@@ -17,6 +17,10 @@ export const GoToTopBtn = () => {
 		}
 	};
 
+	const scrollToTop = () => {
+		window.scrollTo(0, 0);
+	};
+
 	useEffect(() => {
 		window.addEventListener('scroll', handleToTheTopBtn);
 
@@ -24,10 +28,6 @@ export const GoToTopBtn = () => {
 			window.removeEventListener('scroll', handleToTheTopBtn);
 		};
 	}, []);
-
-	const scrollToTop = () => {
-		window.scrollTo(0, 0);
-	};
 
 	return (
 		<button type='button' className={`go-to-top-btn ${buttonVisibility && 'active-btn'}`} onClick={scrollToTop}>

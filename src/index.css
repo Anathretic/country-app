@@ -1,3 +1,11 @@
+:root {
+	--white-color: white;
+	--black-color: #111517;
+	--gray-color: rgb(109, 109, 109);
+	--light-gray-color: rgb(155, 155, 155);
+	--default-font: 'Ysabeau Infant', sans-serif;
+}
+
 *,
 ::after,
 ::before {
@@ -9,16 +17,16 @@
 .light-mode {
 	--background-and-inputs-and-to-top-btn-color: hsl(0, 0%, 96%);
 	--text-and-special-color: hsl(200, 15%, 8%);
-	--box-shadow: rgba(66, 68, 90, 0.75);
-	--flag-box-shadow: rgba(66, 68, 90, 0.25);
+	--box-shadow: rgba(66, 68, 90, 0.5);
+	--flag-box-shadow: rgba(66, 68, 90, 0.15);
 	--go-to-top-button-bg: rgb(68, 68, 68);
 }
 
 .dark-mode {
 	--background-and-inputs-and-to-top-btn-color: hsl(200, 15%, 8%);
 	--text-and-special-color: hsl(0, 0%, 96%);
-	--box-shadow: rgba(165, 167, 189, 0.75);
-	--flag-box-shadow: rgba(165, 167, 189, 0.25);
+	--box-shadow: rgba(165, 167, 189, 0.5);
+	--flag-box-shadow: rgba(165, 167, 189, 0.15);
 	--go-to-top-button-bg: rgb(192, 192, 192);
 }
 
@@ -28,10 +36,10 @@ html {
 }
 
 body {
-	font-family: 'Ysabeau Infant', sans-serif;
+	font-family: var(--default-font);
 	font-size: 1em;
-	background-color: #111517;
-	color: #f5f5f5;
+	background-color: var(--black-color);
+	color: var(--white-color);
 }
 
 .app {
@@ -73,9 +81,9 @@ body {
 	text-decoration: none;
 	transition: visibility 1s, opacity 1s;
 	cursor: pointer;
-	z-index: 10;
-	opacity: 0;
 	visibility: hidden;
+	opacity: 0;
+	z-index: 10;
 }
 
 .active-btn {
@@ -149,7 +157,7 @@ body {
 	margin: 0.75rem 0;
 	background-color: var(--background-and-inputs-and-to-top-btn-color);
 	color: var(--text-and-special-color);
-	font-family: 'Ysabeau Infant', sans-serif;
+	font-family: var(--default-font);
 	border: none;
 	border-radius: 8px;
 	box-shadow: 0 0 20px -5px var(--box-shadow);
@@ -270,11 +278,11 @@ body {
 	margin: 3em 0;
 	width: 65%;
 	max-width: 250px;
-	background-color: rgb(109, 109, 109);
-	color: white;
+	background-color: var(--gray-color);
+	color: var(--white-color);
 	border: none;
 	border-radius: 10px;
-	font-family: 'Ysabeau Infant', sans-serif;
+	font-family: var(--default-font);
 	font-size: 1em;
 	text-transform: uppercase;
 	transition: background-color 0.3s;
@@ -305,13 +313,12 @@ body {
 	content: '';
 	margin-top: 2em;
 	width: 100%;
-	height: 1px;
-	background-color: var(--text-and-special-color);
+	border: 1px solid var(--text-and-special-color);
 }
 
 .country-item-details-container:last-of-type::after {
 	margin-top: 0;
-	background: transparent;
+	border: 1px solid transparent;
 }
 
 .country-item-details-flag {
@@ -345,10 +352,10 @@ body {
 
 .country-item-details-border-button,
 .country-item-details-button {
-	background-color: rgb(109, 109, 109);
-	color: white;
+	background-color: var(--gray-color);
+	color: var(--white-color);
 	border: none;
-	font-family: 'Ysabeau Infant', sans-serif;
+	font-family: var(--default-font);
 	transition: background-color 0.3s;
 	cursor: pointer;
 }
@@ -426,10 +433,10 @@ body {
 .page-not-found-btn {
 	padding: 0.8em 3em;
 	margin: 2em 1em 1em;
-	background-color: rgb(109, 109, 109);
-	color: white;
+	background-color: var(--gray-color);
+	color: var(--white-color);
 	font-size: 1em;
-	font-family: 'Ysabeau Infant', sans-serif;
+	font-family: var(--default-font);
 	text-transform: uppercase;
 	text-decoration: none;
 	border-radius: 8px;
@@ -639,7 +646,7 @@ body {
 	.country-item-details-button:hover,
 	.country-list-special-btn:hover,
 	.page-not-found-btn:hover {
-		background-color: rgb(155, 155, 155);
+		background-color: var(--light-gray-color);
 	}
 }
 

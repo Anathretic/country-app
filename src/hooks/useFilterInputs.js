@@ -8,5 +8,5 @@ export const useFilterInputs = () => {
 		setInputs(prev => ({ ...prev, [name]: value }));
 	};
 
-	return [inputs, setInputs, handleInputChange];
+	return { inputs, setInputs, handleInputChange };
 };
