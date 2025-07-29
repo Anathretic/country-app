@@ -16,14 +16,10 @@ export const CountryList = () => {
 	const [countryID, setCountryID] = useState('');
 
 	const { countryData, isLoading, setIsLoading, error } = useContext(GetCountryDataContext);
-	const [inputs, setInputs, handleInputChange] = useFilterInputs();
+	const { inputs, setInputs, handleInputChange } = useFilterInputs();
 
 	const debouncedSearch = useDebounce(inputs.searchCountry, 500);
 	const debouncedContinent = useDebounce(inputs.continentSelect, 250);
-
-	useEffect(() => {
-		scrollToTop();
-	}, [showDetails]);
 
 	const filteredAndSortedCountries = useMemo(() => {
 		return countryData
@@ -36,6 +32,10 @@ export const CountryList = () => {
 			<CountryListItem key={country.cca3} data={country} setCountryID={setCountryID} setShowDetails={setShowDetails} />
 		));
 	}, [filteredAndSortedCountries, setCountryID, setShowDetails]);
+
+	useEffect(() => {
+		scrollToTop();
+	}, [showDetails]);
 
 	return (
 		<>

@@ -14,6 +14,11 @@ export const CountryItemDetails = ({ setShowDetails, setInputs, countryID, setCo
 		return countryData.find(data => data.cca3 === countryID);
 	}, [countryID, countryData]);
 
+	const handleBack = () => {
+		setShowDetails(false);
+		setCountryID(null);
+	};
+
 	useEffect(() => {
 		if (selectedCountryMemo) {
 			setSelectedCountry(selectedCountryMemo);
@@ -27,11 +32,6 @@ export const CountryItemDetails = ({ setShowDetails, setInputs, countryID, setCo
 			});
 		}
 	}, [selectedCountry]);
-
-	const handleBack = () => {
-		setShowDetails(false);
-		setCountryID(null);
-	};
 
 	return (
 		<div className='country-item-details-wrapper'>
