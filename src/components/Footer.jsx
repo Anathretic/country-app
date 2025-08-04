@@ -1,5 +1,5 @@
 import { IconContext } from 'react-icons';
-import { FaGithubSquare, FaLinkedin, FaHome } from 'react-icons/fa';
+import { FaGithubSquare, FaLinkedin } from 'react-icons/fa';
 
 export const Footer = () => {
 	return (
@@ -8,9 +8,6 @@ export const Footer = () => {
 				<span>Do you want to see my other projects or repo? Check the links below!</span>
 				<div className='footer-icons'>
 					<IconContext.Provider value={{ className: 'footer-icon' }}>
-						<a href='https://konrad-wojtylo.com' target='_blank' rel='noreferrer'>
-							<FaHome />
-						</a>
 						<a href='https://github.com/Anathretic/country-app' target='_blank' rel='noreferrer'>
 							<FaGithubSquare />
 						</a>
