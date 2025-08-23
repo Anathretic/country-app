@@ -1,5 +1,5 @@
-import { getSafeValue } from '../../../../../utils/getSafeValue';
-import { scrollToTop } from '../../../../../utils/scrollToTop';
+import { getSafeValue } from '../../../../shared/utils/getSafeValue';
+import { scrollToTop } from '../../../../shared/utils/scrollToTop';
 
 export const CountryItemDetailsBox = ({ label, dataSpan, children }) => {
 	return (

@@ -1,8 +1,8 @@
 import { useContext, useEffect, useMemo, useState } from 'react';
-import { GetCountryDataContext } from '../../../../context/GetCountryDataContext';
-import { CountryItemDetailsBorderBtns, CountryItemDetailsBox } from './components/CountryItemDetailsElements';
-import { generateCountryItemDetails } from './components/countryDetails/generateCountryItemDetails';
-import { BarsLoader } from '../../../Loaders';
+import { GetCountryDataContext } from '../../../../shared/context/GetCountryDataContext';
+import { CountryItemDetailsBorderBtns, CountryItemDetailsBox } from './CountryItemDetailsElements';
+import { generateCountryItemDetails } from './generateCountryItemDetails';
+import { BarsLoader } from '../../../../shared/components/Loaders';
 
 export const CountryItemDetails = ({ setShowDetails, setInputs, countryID, setCountryID }) => {
 	const [selectedCountry, setSelectedCountry] = useState({});

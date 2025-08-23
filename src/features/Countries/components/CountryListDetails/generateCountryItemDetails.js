@@ -1,5 +1,5 @@
-import { getPluralTitle } from '../../../../../../utils/getPluralTitle';
-import { getSafeValue } from '../../../../../../utils/getSafeValue';
+import { getPluralTitle } from '../../../../shared/utils/getPluralTitle';
+import { getSafeValue } from '../../../../shared/utils/getSafeValue';
 
 export const generateCountryItemDetails = async ({ country }) => {
 	const countryDetails = {

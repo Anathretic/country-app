@@ -1,5 +1,5 @@
 import { createContext, useCallback, useEffect, useState } from 'react';
-import { DataHandler } from '../helpers/getDataHelper';
+import { DataHandler } from '../../features/Countries/helpers/getDataHelper';
 
 export const GetCountryDataContext = createContext();
 

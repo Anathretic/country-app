@@ -1,5 +1,5 @@
 import { memo, useCallback, useState } from 'react';
-import { CirclesLoader } from '../../Loaders';
+import { CirclesLoader } from '../../../shared/components/Loaders';
 
 const CountryListItem = memo(({ data, setCountryID, setShowDetails }) => {
 	const [isLoading, setIsLoading] = useState(false);
