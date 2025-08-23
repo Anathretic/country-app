@@ -1,15 +1,15 @@
 import { useContext, useEffect, useMemo, useState } from 'react';
-import { GetCountryDataContext } from '../../context/GetCountryDataContext';
-import { useFilterInputs } from '../../hooks/useFilterInputs';
-import { useDebounce } from '../../hooks/useDebounce';
-import { filterCountryList } from '../../helpers/filterCountryListHelper';
-import { sortCountryList } from '../../helpers/sortCountryListHelper';
-import { CountryItemDetails } from './components/CountryItemDetails/CountryItemDetails';
-import CountryListItem from './components/CountryListItem';
-import { CountryListInputFilterElement, CountryListSelectFilterElement } from './components/CountryListFilterElements';
-import { GoToTopBtn } from '../GoToTopBtn';
-import { BarsLoader } from '../Loaders';
-import { scrollToTop } from '../../utils/scrollToTop';
+import { GetCountryDataContext } from '../../../shared/context/GetCountryDataContext';
+import { useFilterInputs } from '../../../shared/hooks/useFilterInputs';
+import { useDebounce } from '../../../shared/hooks/useDebounce';
+import { filterCountryList } from '../helpers/filterCountryListHelper';
+import { sortCountryList } from '../helpers/sortCountryListHelper';
+import { CountryItemDetails } from './CountryListDetails/CountryItemDetails';
+import CountryListItem from './CountryListItem';
+import { CountryListInputFilterElement, CountryListSelectFilterElement } from './CountryListFilterElements';
+import { GoToTopBtn } from '../../../shared/components/GoToTopBtn';
+import { BarsLoader } from '../../../shared/components/Loaders';
+import { scrollToTop } from '../../../shared/utils/scrollToTop';
 
 export const CountryList = () => {
 	const [showDetails, setShowDetails] = useState(false);

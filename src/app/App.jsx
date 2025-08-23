@@ -1,11 +1,11 @@
 import { useContext } from 'react';
 import { Route, Routes } from 'react-router-dom';
-import { DarkModeContext } from './context/DarkModeContext';
-import { CountryListWrapper } from './components/Countries/CountryListWrapper';
-import { CountryList } from './components/Countries/CountryList';
-import { Header } from './components/Header';
-import { Footer } from './components/Footer';
-import { PageNotFound } from './components/PageNotFound';
+import { DarkModeContext } from '../shared/context/DarkModeContext';
+import { CountryListWrapper } from '../features/Countries/components/CountryListWrapper';
+import { CountryList } from '../features/Countries/components/CountryList';
+import { Header } from '../shared/components/Header';
+import { Footer } from '../shared/components/Footer';
+import { PageNotFound } from '../shared/components/PageNotFound';
 
 const App = () => {
 	const { darkMode } = useContext(DarkModeContext);
