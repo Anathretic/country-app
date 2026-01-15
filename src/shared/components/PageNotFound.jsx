@@ -10,10 +10,13 @@ export const PageNotFound = () => {
 				<title>Page not found | Countrypedia</title>
 				<meta
 					name='description'
-					content="Oops! It looks like this page doesn't exist. Check the address or return to the home page."
+					content='The page you are looking for could not be found. Please check the URL or return to the Countrypedia homepage.'
 				/>
 				<meta property='og:title' content='Page not found | Countrypedia' />
-				<meta property='og:description' content='Page not found. Redirect to my offer.' />
+				<meta
+					property='og:description'
+					content='This page could not be found. Go back to the Countrypedia homepage and explore countries around the world.'
+				/>
 				<meta property='og:type' content='website' />
 				<meta property='og:url' content={currentUrl} />
 				<meta name='robots' content='noindex, nofollow' />
