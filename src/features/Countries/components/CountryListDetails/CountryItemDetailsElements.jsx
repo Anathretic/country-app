@@ -26,7 +26,7 @@ export const CountryItemDetailsBorderBtns = ({ selectedCountry, setInputs, setCo
 									setCountryID(border);
 									setInputs({ searchCountry: '', continentSelect: '' });
 								}}>
-								{border}
+								<span>{border}</span>
 							</button>
 					  ))
 					: 'No border countries!'
